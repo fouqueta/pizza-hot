@@ -1,0 +1,15 @@
+.menu-pizza{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.menu{
+    background-color: crimson;
+    color:white;
+}
+
+.produits{
+    background-color: lightblue;
+    color:white;
+}
