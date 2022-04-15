@@ -1,15 +1,34 @@
-.menu-pizza{
-    margin: auto;
-    width: 50%;
-    padding: 10px;
+.navbarProd{
+    list-style-type: none;
+    background-color: white;
+    display:flex;
+    /*justify-content: center;*/
+
 }
 
-.menu{
-    background-color: crimson;
-    color:white;
+/* Si d'autres <li><a ...> dans la page, rajouter id dans chaque li du navbar_produit pour differencier*/
+li a{
+    text-align: center;
+    color: black;
+    display: block;
+    padding: 18px 20px;
 }
 
-.produits{
-    background-color: lightblue;
-    color:white;
+li a:hover {
+    background-color: #DDFCA5;
+    text-decoration: none;
+    color: black;
+}
+
+#vege+label {
+    text-align: center;
+    color: black;
+    display: block;
+    padding: 18px 20px;
+    float: right;
+}
+#vege+label:hover{
+    background-color: #DDFCA5;
+    text-decoration: none;
+    color: black;
 }
