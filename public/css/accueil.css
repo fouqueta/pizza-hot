@@ -14,18 +14,25 @@ h2 {
 }
 
 #baniere {
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
+  height: 75px;
+  z-index: 1;
 }
 
 #hors_nav {
   /* position: fixed;
   min-height: 92%; */
-  border: solid blue 3px;
+  position: absolute;
+  min-height: 89%;
+  margin-top: 75px;
+  /* border: solid blue 3px; */
 }
 
 #div_produits {
-  border: solid red 2px;
+  position: relative;
+  /* border: solid red 2px; */
   /* bottom: 0; */
   /* position: relative; */
 }
@@ -33,8 +40,9 @@ h2 {
 #div_panier {
   position: fixed;
   right: 0;
-  height: 92%;
-  border: solid green 2px;
+  border-left: groove 5px red;
+  height: 90%;
+  /* border: solid green 2px; */
 }
 
 #div_panier p {
@@ -48,5 +56,11 @@ h2 {
 }
 
 #bouton_commander {
+  background-color: red;
+  padding: 20px;
   bottom: 0;
+}
+
+#test {
+  width: 100%;
 }
