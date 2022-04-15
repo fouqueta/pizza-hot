@@ -1,15 +1,52 @@
-.menu-pizza{
-    margin: auto;
-    width: 50%;
-    padding: 10px;
+html, body {
+  height: 100%;
 }
 
-.menu{
-    background-color: crimson;
-    color:white;
+#page {
+    /* position: fixed;
+    min-height: 100%; */
 }
 
-.produits{
-    background-color: lightblue;
-    color:white;
+h2 {
+  font-size: 25px;
+  font-style: bold;
+  text-align: center;
+}
+
+#baniere {
+  position: sticky;
+  top: 0;
+}
+
+#hors_nav {
+  /* position: fixed;
+  min-height: 92%; */
+  border: solid blue 3px;
+}
+
+#div_produits {
+  border: solid red 2px;
+  /* bottom: 0; */
+  /* position: relative; */
+}
+
+#div_panier {
+  position: fixed;
+  right: 0;
+  height: 92%;
+  border: solid green 2px;
+}
+
+#div_panier p {
+  font-size: 15px;
+}
+
+#lien_menu {
+  text-decoration: underline;
+  font-size: 15px;
+  color: black;
+}
+
+#bouton_commander {
+  bottom: 0;
 }
