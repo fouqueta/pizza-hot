@@ -16,7 +16,7 @@
 
 <body>
 <div id=page>
-  <nav id="baniere" class="navbar navbar-expand-md bg-light navbar-light">
+  <nav id="baniere" class="navbar navbar-expand-md navbar-light">
       <a class="navbar-brand" href="#">Pizza Hot</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header">
@@ -38,7 +38,7 @@
   <div id="hors_nav" class="container-fluid">
     <div class="row">
 
-      <div id="div_produits" class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+      <div id="div_produits" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
         <p>AAAAH</p>
         <br><br><br><br><br>
         <p>AAAAH</p>
@@ -54,7 +54,7 @@
         <p>AAAAH</p>
       </div>
 
-      <div id="div_panier" class="hidden-xs hidden-sm col-md-3 col-lg-3">
+      <div id="div_panier" class="d-none d-md-block col-md-4 col-lg-3">
         <h2>Panier</h2>
         <div id="panier_vide">
           <p><!--A modifier en js-->
@@ -62,13 +62,13 @@
               <a id="lien_menu" href="accueil.html">nos incroyables menus</a>
           </p>
         </div>
-        <div id="bouton_commander">
-          <button id="test" type="button" name="bouton_commander">Commander</button>
+        <div id="div_bouton_commander">
+          <button id="bouton_commander" type="button" name="bouton_commander" disabled>Commander</button>
         </div>
       </div>
-      <!-- <div id="small_commander" class"col-xs-12 col-sm-12 hidden-md hidden-lg">
-        <button type="button" name="but_sm_commander">Commander</button>
-      </div> -->
+      <!-- <div id="div_small_commander" class"d-block d-md-none col-xs-12 col-sm-12"> -->
+        <button id="bouton_small_commander" class="d-block d-md-none col-xs-12 col-sm-12 fixed-bottom" type="button" name="bouton_small_commander">Commander</button>
+      <!-- </div> -->
 
     </div>
   </div>

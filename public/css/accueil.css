@@ -5,9 +5,13 @@ html, body {
 #page {
     /* position: fixed;
     min-height: 100%; */
+    position: relative;
+    min-height: 100%;
+    /* border: solid orange 2px; */
 }
 
 h2 {
+  margin-top: 10%;
   font-size: 25px;
   font-style: bold;
   text-align: center;
@@ -18,14 +22,16 @@ h2 {
   top: 0;
   width: 100%;
   height: 75px;
+  border-bottom: ridge 5px gold;
   z-index: 1;
+  background-color: gold
 }
 
 #hors_nav {
   /* position: fixed;
   min-height: 92%; */
-  position: absolute;
-  min-height: 89%;
+  /* position: absolute; */
+  /* min-height: 89%; */
   margin-top: 75px;
   /* border: solid blue 3px; */
 }
@@ -40,8 +46,10 @@ h2 {
 #div_panier {
   position: fixed;
   right: 0;
-  border-left: groove 5px red;
-  height: 90%;
+  bottom: 0;
+  border-left: groove 5px gold;
+  background-color: gold;
+  min-height: 90%;
   /* border: solid green 2px; */
 }
 
@@ -55,12 +63,33 @@ h2 {
   color: black;
 }
 
-#bouton_commander {
-  background-color: red;
-  padding: 20px;
+#div_bouton_commander {
+  position: absolute;
+  padding: 5% 0;
+  left: 0;
   bottom: 0;
+  width: 100%;
+  background-color: gold;
 }
 
-#test {
+#bouton_commander {
+  border-radius: 10px;
+  border: groove 4px limegreen;
+  background-color: limegreen;
+  padding: 7% 0;
+  margin-left: 5%;
+  width: 90%;
+}
+
+/* #div_small_commander {
+  width: 100%;
+  background-color: gold;
+  border: solid red 5px;
+} */
+
+#bouton_small_commander {
+  border: groove 4px limegreen;
+  background-color: limegreen;
+  padding: 2% 0;
   width: 100%;
 }
