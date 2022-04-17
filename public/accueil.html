@@ -16,7 +16,8 @@
 
 <body>
 <div id=page>
-  <nav id="baniere" class="navbar navbar-expand-md navbar-light">
+    <!------------------------------------ BANIERE -------------------------------------->
+    <nav id="baniere" class="navbar navbar-expand-md navbar-light">
       <a class="navbar-brand" href="#">Pizza Hot</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header">
@@ -26,53 +27,63 @@
       <div class="collapse navbar-collapse" id="navbar-header">
           <ul class="navbar-nav">
               <li class="nav-item">
-                  <a class="nav-link" href="#">La carte</a>
-              </li>
-              <li class="nav-item">
                   <a class="nav-link" href="#">Connexion</a>
               </li>
           </ul>
       </div>
-  </nav>
+    </nav>
 
-  <div id="hors_nav" class="container-fluid">
-    <div class="row">
+    <!-------------------------- navbar -------------------------->
+    <ul class="navbarProd" >
+        <li><a href="#">Menus</a></li>
+        <li><a href="#">Entrees</a></li>
+        <li><a href="#">Pizzas</a></li>
+        <li><a href="#">Boissons</a></li>
+        <li><a href="#">Desserts</a></li>
+    </ul>
 
-      <div id="div_produits" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
-        <p>AAAAH</p>
-        <br><br><br><br><br>
-        <p>AAAAH</p>
-        <br><br><br><br><br>
-        <p>AAAAH</p>
-        <br><br><br><br><br>
-        <p>AAAAH</p>
-        <br><br><br><br><br>
-        <p>AAAAH</p>
-        <br><br><br><br><br>
-        <p>AAAAH</p>
-        <br><br><br><br><br>
-        <p>AAAAH</p>
-      </div>
+    <!------------------------------ HORS BANIERE/NAVBAR ------------------------------->
+    <div id="hors_nav" class="container-fluid">
+        <!-------------------- liste des produits -------------------->
+        <div class="row">
+          <div id="div_produits" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+            <p>AAAAH</p>
+            <br><br><br><br><br>
+            <p>AAAAH</p>
+            <br><br><br><br><br>
+            <p>AAAAH</p>
+            <br><br><br><br><br>
+            <p>AAAAH</p>
+            <br><br><br><br><br>
+            <p>AAAAH</p>
+            <br><br><br><br><br>
+            <p>AAAAH</p>
+            <br><br><br><br><br>
+            <p>AAAAH</p>
+          </div>
 
-      <div id="div_panier" class="d-none d-md-block col-md-4 col-lg-3">
-        <h2>Panier</h2>
-        <div id="panier_vide">
-          <p><!--A modifier en js-->
-            Votre panier est vide. Pas d'idées ? Regardez
-              <a id="lien_menu" href="accueil.html">nos incroyables menus</a>
-          </p>
+            <!-------------------- panier -------------------->
+            <div id="div_panier" class="d-none d-md-block col-md-4 col-lg-3">
+            <h2>Panier</h2>
+            <div id="panier_vide">
+              <p><!--A modifier en js-->
+                Votre panier est vide. Pas d'idées ? Regardez
+                  <a id="lien_menu" href="accueil.html">nos incroyables menus</a>
+              </p>
+            </div>
+            <div id="div_bouton_commander">
+              <button id="bouton_commander" type="button" name="bouton_commander" disabled>Commander</button>
+            </div>
+          </div>
+          <!-- <div id="div_small_commander" class"d-block d-md-none col-xs-12 col-sm-12"> -->
+            <button id="bouton_small_commander" class="d-block d-md-none col-xs-12 col-sm-12 fixed-bottom" type="button" name="bouton_small_commander">Commander</button>
+          <!-- </div> -->
+
         </div>
-        <div id="div_bouton_commander">
-          <button id="bouton_commander" type="button" name="bouton_commander" disabled>Commander</button>
-        </div>
       </div>
-      <!-- <div id="div_small_commander" class"d-block d-md-none col-xs-12 col-sm-12"> -->
-        <button id="bouton_small_commander" class="d-block d-md-none col-xs-12 col-sm-12 fixed-bottom" type="button" name="bouton_small_commander">Commander</button>
-      <!-- </div> -->
-
-    </div>
-  </div>
 </div>
+
+
 
 </body>
 </html>
