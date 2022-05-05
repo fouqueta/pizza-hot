@@ -69,7 +69,7 @@ CREATE TABLE sauce (
 );
 
 CREATE TABLE entree (
-  nom varchar(20),
+  nom varchar(30),
   prix float(4) not null,
   sauce varchar(20),
   id_prod integer not null,
@@ -141,7 +141,7 @@ CREATE TABLE commande_produits (
 -- );
 
 
-INSERT INTO produit VALUES
+INSERT INTO produit (type_prod) VALUES
   ('pizza'),
   ('pizza'),
   ('pizza'),
@@ -212,7 +212,7 @@ INSERT INTO produit VALUES
   ('dessert'),
   ('dessert'),
   ('dessert'),
-  ('dessert')
+  ('dessert'),
   ('menu_items');
 
 INSERT INTO ingredient VALUES
@@ -221,6 +221,7 @@ INSERT INTO ingredient VALUES
   ('Emmental', 1.50, 'commun'),
   ('Bleu', 1.50, 'commun'),
   ('Pepperoni', 1.50, 'commun'),
+  ('Jambon', 1.50, 'commun'),
   ('Champignons', 1.50, 'commun'),
   ('Jambon cru', 1.50, 'commun'),
   ('Raclette', 1.50, 'commun'),
@@ -241,7 +242,7 @@ INSERT INTO menu VALUES
   ('Mega Menu', 30.90, 2, 2, 1),
   ('Giga Menu', 38.90, 2, 3, 1);
 
-INSERT INTO pizza VALUES
+INSERT INTO pizza (nom, taille, prix, id_prod) VALUES
   ('Personnalisable', 'Medium', 11.50, 1),
   ('Personnalisable', 'XLarge', 15.50, 2),
   ('4 Fromages', 'Medium', 11.50, 3),
@@ -379,12 +380,12 @@ INSERT INTO entree VALUES
   ('Potatoes', 3.00, 'Ketchup', 43),
   ('Potatoes', 3.00, 'Mayo', 44),
   ('Potatoes', 3.00, 'Sauce Barbecue', 45),
-  ('Salade Caesar', 7.00, '', 46),
-  ('Salade Caesar', 7.00, '', 47),
-  ('Salade Caesar', 7.00, '', 48);
-  ('Salade Grecque', 7.00, '', 49),
-  ('Salade Grecque', 7.00, '', 50),
-  ('Salade Grecque', 7.00, '', 51);
+  ('Salade Caesar', 7.00, 'Ketchup', 46),
+  ('Salade Caesar', 7.00, 'Mayo', 47),
+  ('Salade Caesar', 7.00, 'Sauce Barbecue', 48),
+  ('Salade Grecque', 7.00, 'Ketchup', 49),
+  ('Salade Grecque', 7.00, 'Mayo', 50),
+  ('Salade Grecque', 7.00, 'Sauce Barbecue', 51);
 
 INSERT INTO boisson VALUES
   ('Coca-Cola', '1,25L', 3.40, 52),
@@ -417,10 +418,10 @@ INSERT INTO menu_items VALUES
   (11, 1, 'Mega Menu', 72),
   (52, 1, 'Mega Menu', 72);
 
-INSERT INTO utilisateur VALUES
+INSERT INTO utilisateur (prenom, nom, email, mdp, adr_ville, adr_rue, adr_code_postal) VALUES
   ('Lara', 'Pidité', 'flaaash@gmail.com', 'VroomVroom', 'Paris', '6 rue Rié', 75013);
 
-INSERT INTO commande VALUES
+INSERT INTO commande (id_client, date_cmd, prise_en_charge, livree) VALUES
   (1, '2022-05-25 12:30', 'false', 'false'),
   (1, '2022-05-25 19:45', 'false', 'false');
 
@@ -429,5 +430,4 @@ INSERT INTO commande_produits VALUES
   (1, 8, 1),
   (1, 63, 1),
   (1, 67, 2),
-  (2, 72, 1),
-;
+  (2, 72, 1);
