@@ -1,54 +1,46 @@
-
-
-function replace(){
-
-  //  $("#carte_pizzas").click(function () {
+$(document).ready(function(){
+    document.getElementById('carte_menus').onclick = function() {
         console.log("oui");
-
-        document.getElementById('div_produits').innerHTML = '';
-        let newDivContent = document.createElement('div');
-        newDivContent.innerHTML = "cc je suis le nouveau div pizza";
-        document.getElementById('div_produits').appendChild(newDivContent);
+        replace('carte_menus');
+    }
+    document.getElementById('carte_entrees').onclick = function() {
+        console.log("oui");
+        replace('carte_entrees');
+    }
+    document.getElementById('carte_pizzas').onclick = function() {
+   // $("#carte_pizzas").click(function(){
+        console.log("oui");
+        replace('carte_pizzas');
+    }
+    document.getElementById('carte_boissons').onclick = function() {
+        console.log("oui");
+        replace('carte_boissons');
+    }
+    document.getElementById('carte_desserts').onclick = function() {
+        console.log("oui");
+        replace('carte_desserts');
+    }
+    document.getElementById('carte_sauces').onclick = function() {
+        console.log("oui");
+        replace('carte_sauces');
     }
 
-  /*  $("#carte_boissons").mousedown(function(){
-        console.log("oui");
+    function replace(s){
         document.getElementById('div_produits').innerHTML = '';
         let newDivContent = document.createElement('div');
-        newDivContent.innerHTML = "cc je suis le nouveau div boisson";
+        newDivContent.innerHTML = "cc je suis le nouveau div " + s;
         document.getElementById('div_produits').appendChild(newDivContent);
-    });*/
-
-
-$(document).ready(function(){
-   // replace();
-    document.getElementById('carte_pizzas').addEventListener('onclick', replace);
-
-
-
+    }
 });
 
 
 
 
 
-   /* $("#carte_pizzas").click(function(){
-                 function myFunction() {
-                      x=document.getElementsByClassName("div_produits");  // Find the elements
-                      for(var i = 0; i < x.length; i++){
-                          x[i].innerText="Hello JavaScript!";    // Change the content
-                      }
-
-                  }
-
-
-                  var data = ""
-                  (data)=>{
-                      let doc = document.open('text/html','replace');
-                      doc.write(data)
-                      doc.close();
-                  }
-              });
-
-
-    }*/
+ /*
+(data)=>{
+    let doc = document.open('text/html','replace');
+    doc.write(data)
+    doc.close();
+}
+*/
