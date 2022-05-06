@@ -8,9 +8,13 @@ serveur.use(express.static('public'));
 serveur.get('/', function (req,res) {
     res.sendFile("accueil.html", {root:'public'});
 });
+/*
+serveur.get('/carte_pizzas',function (req,res) {
+    $(document).ready(function () {
 
-// serv.get('/livraison',function (req,res) {
-// });
+    });
+
+});*/
 
 serveur.listen(8080,
     () => {
