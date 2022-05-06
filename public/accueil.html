@@ -11,12 +11,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/accueil.css">
+    <script src="accueil.js"></script>
 </head>
 
 <body>
 <div id=page class="container-fluid">
     <!------------------------------------ banniere -------------------------------------->
 
+    <!-------------------------- navbar -------------------------->
         <ul id="banniere" class="row">
             <li id="logo"><a href="#">Pizza Hot</a></li>
             <li id="inscription"><a href="#">Inscription</a></li>
@@ -24,12 +26,13 @@
         </ul>
         <!-------------------------- navbar -------------------------->
         <ul id="navbarProd" class="row col-xs-12 col-sm-12 col-md-8 col-lg-9">
-            <li><a href="#">Menus</a></li>
-            <li><a href="#">Entrées</a></li>
-            <li><a href="#">Pizzas</a></li>
-            <li><a href="#">Boissons</a></li>
-            <li><a href="#">Desserts</a></li>
-            <li><a href="#">Sauces</a></li>
+            <li><button id="carte_menus">Menus</button></li>
+            <li><button id="carte_entrees">Entrees</button></li>
+            <li><button id="carte_pizzas">Pizzas</button></li>
+            <li><button id="carte_boissons">Boissons</button></li>
+            <li><button id="carte_desserts">Desserts</button></li>
+            <li><button id="carte_sauces">Sauces</button></li>
+
         </ul>
 
     <!------------------------------ HORS banniere/NAVBAR ------------------------------->
@@ -72,6 +75,7 @@
           <!-- </div> -->
 
         </div>
+    </div>
 </div>
 
 
