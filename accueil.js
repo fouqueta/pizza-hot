@@ -14,6 +14,8 @@ $(document).ready(function() {
     div_boissons.hide();
     div_desserts.hide();
     div_sauces.hide();
+
+    init_produits(div_menus);
     // init_produits();
 
     document.getElementById('carte_menus').onclick = function() {
@@ -44,14 +46,24 @@ $(document).ready(function() {
     function replace(s) {
         $('#div_produits>div').hide();
         s.show();
-        // let newDivContent = document.createElement('div');
-        // newDivContent.innerHTML = "cc je suis le nouveau div " + s;
-        // document.getElementById('div_produits').appendChild(newDivContent);
     }
 
-    function init_produits() {
-
+    function init_produits(s) {
+        // let div_i = '<img src="/images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>';
+        // let x = $(div_i);
+        // div_menus.append(x);
+        for (let i = 0; i < 15; i++) {
+            let div_item = '<div';
+            div_item += ' id="item_' + s + '_' + i + '"';
+            div_item += ' class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">';
+            div_item += '<div class="inside_div_produit"><img src="/images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>';
+            div_item += '<p>Test</p></div></div>';
+            //div_item += '<img src=images/' + + i + '.jpg /></div>';
+            let el = $(div_item);
+            s.append(el);
+        }
     }
+
 });
 
 

@@ -108,7 +108,7 @@ h2 {
     position: relative;
     margin-top: 80px;
     margin-bottom: 55px;
-  border: solid red 2px;
+    border: solid red 2px;
   /* bottom: 0; */
   /* position: relative; */
 }
@@ -162,4 +162,16 @@ h2 {
   background-color: limegreen;
   height: 55px;
   width: 100%;
+}
+
+
+
+.inside_div_produit {
+  padding: 0;
+  border: solid rgb(237, 225, 182) 2px;
+  margin-bottom: 15px;
+}
+
+.img_fluid {
+  width: max-content;
 }
