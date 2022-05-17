@@ -20,13 +20,13 @@ CREATE TABLE produit (
 
 CREATE TABLE ingredient (
   nom varchar(20) primary key,
-  prix  float(4) not null,
+  prix  numeric(4,2) not null,
   categorie varchar(20)
 );
 
 CREATE TABLE menu (
   nom varchar(20) primary key,
-  prix float(4) not null,
+  prix numeric(4,2) not null,
   nb_entree integer not null,
   nb_pizza integer not null,
   nb_boisson integer not null
@@ -47,7 +47,7 @@ CREATE TABLE pizza (
   id_pizza serial primary key,
   nom varchar(20),
   taille varchar(10) not null,
-  prix float(4) not null,
+  prix numeric(4,2) not null,
   id_prod integer not null,
   foreign key (id_prod) references produit(id_prod)
 );
@@ -63,25 +63,25 @@ CREATE TABLE pizza_ingredients (
 
 CREATE TABLE sauce (
   nom varchar(20) primary key,
-  prix float(4) not null,
+  prix numeric(4,2) not null,
   id_prod integer not null,
   foreign key (id_prod) references produit(id_prod)
 );
 
 CREATE TABLE entree (
-  nom varchar(30),
-  prix float(4) not null,
+  id_entree serial PRIMARY KEY,
+  nom varchar(30) not null,
+  prix numeric(4,2) not null,
   sauce varchar(20),
   id_prod integer not null,
   foreign key (sauce) references sauce(nom),
-  foreign key (id_prod) references produit(id_prod),
-  primary key (nom, sauce)
+  foreign key (id_prod) references produit(id_prod)
 );
 
 CREATE TABLE boisson (
   nom varchar(20),
   volume varchar(20) not null,
-  prix float(4) not null,
+  prix numeric(4,2) not null,
   id_prod integer not null,
   foreign key (id_prod) references produit(id_prod),
   PRIMARY KEY (nom, volume)
@@ -89,7 +89,7 @@ CREATE TABLE boisson (
 
 CREATE TABLE dessert (
   nom varchar(20) primary key,
-  prix float(4) not null,
+  prix numeric(4,2) not null,
   id_prod integer not null,
   foreign key (id_prod) references produit(id_prod)
 );
@@ -367,7 +367,7 @@ INSERT INTO sauce VALUES
   ('Mayo', 0.30, 32),
   ('Sauce Barbecue', 0.30, 33);
 
-INSERT INTO entree VALUES
+INSERT INTO entree (nom, prix, sauce, id_prod) VALUES
   ('Breadsticks mozzarella', 5.00, 'Ketchup', 34),
   ('Breadsticks mozzarella', 5.00, 'Mayo', 35),
   ('Breadsticks mozzarella', 5.00, 'Sauce Barbecue', 36),
@@ -379,13 +379,16 @@ INSERT INTO entree VALUES
   ('Chicken Nuggets', 5.00, 'Sauce Barbecue', 42),
   ('Potatoes', 3.00, 'Ketchup', 43),
   ('Potatoes', 3.00, 'Mayo', 44),
-  ('Potatoes', 3.00, 'Sauce Barbecue', 45),
-  ('Salade Caesar', 7.00, 'Ketchup', 46),
-  ('Salade Caesar', 7.00, 'Mayo', 47),
-  ('Salade Caesar', 7.00, 'Sauce Barbecue', 48),
-  ('Salade Grecque', 7.00, 'Ketchup', 49),
-  ('Salade Grecque', 7.00, 'Mayo', 50),
-  ('Salade Grecque', 7.00, 'Sauce Barbecue', 51);
+  ('Potatoes', 3.00, 'Sauce Barbecue', 45);
+
+INSERT INTO entree (nom, prix, id_prod) VALUES
+  ('Salade Caesar', 7.00, 46),
+  ('Salade Grecque', 7.00, 47),
+  ('Chips laise', 2.00, 48),
+  ('Prungles', 2.00, 49),
+  ('Munster Monch', 2.00, 50),
+  ('Berlun Minipizza', 1.00, 51);
+
 
 INSERT INTO boisson VALUES
   ('Coca-Cola', '1,25L', 3.40, 52),

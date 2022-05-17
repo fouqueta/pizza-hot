@@ -46,11 +46,13 @@
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p> <%= menus[i].nom %> </p>
-                      <select name="taille" class="select-taille">
-                        <option value="Medium" selected>Medium</option>
-                        <option value="XLarge">Xlarge</option>
-                    </select>
+                      <p class="nom_item"> <%= menus[i].nom %> </p>
+                      <p> <%= menus[i].nb_entree %> entrée<% if (menus[i].nb_entree!==1) {%>s<%}%> +
+                       <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> +
+                       <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
+                      </p>
+                      <p class="prix_item"> <%= menus[i].prix %>€ </p>
+                      <button class="bouton_item bouton_menu_choisir">Choisir</button>
                   </div>
                 </div>
                 <% } %> 
@@ -58,15 +60,20 @@
 
               <div id="div_produits_entrees"  class="row">
                 <% for(let i=0; i<entrees.length; i++) {
-                  if (i%3===0) { %>
+                  if (i%3===0 || entrees[i].sauce===null) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p> <%= entrees[i].nom %> </p>
-                      <select name="taille" class="select-taille">
-                        <option value="Medium" selected>Medium</option>
-                        <option value="XLarge">Xlarge</option>
-                    </select>
+                      <p class="nom_item"> <%= entrees[i].nom %> </p>
+                      <% if(entrees[i].sauce!==null) { %>
+                      <select name="sauce" class="select select-sauce">
+                        <% for(let i=0; i<sauces.length; i++) { %>
+                        <option value=<%=sauces[i].nom%>><%=sauces[i].nom%></option>
+                        <% } %>
+                      </select>
+                      <% } %>
+                      <p class="prix_item"> <%= entrees[i].prix %>€ </p>
+                      <button class="bouton_item bouton_ajouter">Ajouter</button>
                   </div>
                 </div>
                 <% }} %> 
@@ -78,11 +85,21 @@
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p> <%= pizzas[i].nom %> </p>
-                      <select name="taille" class="select-taille">
-                        <option value="Medium" selected>Medium</option>
-                        <option value="XLarge">Xlarge</option>
+                      <p class="nom_item"> <%= pizzas[i].nom %> </p>
+                      <select name="taille" class="select select-taille">
+                        <% for(let i=0; i<taille.length; i++) { %>
+                          <option value=<%=taille[i].taille%>><%=taille[i].taille%></option>
+                        <% } %>
                     </select>
+                    <p class="prix_item">
+                      <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
+                        <%= pizzas[i].prix %>€ 
+                    </p>
+                    <% if(pizzas[i].nom === "Personnalisable") { %>
+                      <button class="bouton_item bouton_pizza_choisir">Choisir</button>
+                    <% } else { %>
+                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                    <% } %>
                   </div>
                 </div>
                 <% }} %> 
@@ -93,11 +110,9 @@
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p> <%= boissons[i].nom %> </p>
-                      <select name="taille" class="select-taille">
-                        <option value="Medium" selected>Medium</option>
-                        <option value="XLarge">Xlarge</option>
-                    </select>
+                    <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
+                    <p class="prix_item"> <%= boissons[i].prix %>€ </p>
+                    <button class="bouton_item bouton_ajouter">Ajouter</button>
                   </div>
                 </div>
                 <% } %> 
@@ -108,11 +123,9 @@
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p> <%= desserts[i].nom %> </p>
-                      <select name="taille" class="select-taille">
-                        <option value="Medium" selected>Medium</option>
-                        <option value="XLarge">Xlarge</option>
-                    </select>
+                      <p class="nom_item"> <%= desserts[i].nom %> </p>
+                      <p class="prix_item"> <%= desserts[i].prix %>€ </p>
+                      <button class="bouton_item bouton_ajouter">Ajouter</button>
                   </div>
                 </div>
                 <% } %> 
@@ -123,11 +136,9 @@
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p> <%= sauces[i].nom %> </p>
-                      <select name="taille" class="select-taille">
-                        <option value="Medium" selected>Medium</option>
-                        <option value="XLarge">Xlarge</option>
-                    </select>
+                      <p class="nom_item"> <%= sauces[i].nom %> </p>
+                      <p class="prix_item"> <%= sauces[i].prix %>€ </p>
+                      <button class="bouton_item bouton_ajouter">Ajouter</button>
                   </div>
                 </div>
                 <% } %> 

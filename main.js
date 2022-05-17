@@ -6,7 +6,7 @@ const pool = new pg.Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'pizzahot',
-    password: 'mettre_mdp',
+    password: 'BD6',
     port: 5432,
 });
 
@@ -15,7 +15,8 @@ async function init_items() {
     const client = await pool.connect();
     let items = {
         menus: await client.query ("SELECT * FROM menu"),
-        pizzas: await client.query ("SELECT nom, taille, prix FROM pizza"),
+        pizzas: await client.query ("SELECT nom, prix FROM pizza"),
+        taillePizzas: await client.query("SELECT DISTINCT taille FROM pizza"),
         ingredients: await client.query ("SELECT * FROM ingredient"),
         entrees: await client.query ("SELECT nom, prix, sauce FROM entree"),
         boissons: await client.query ("SELECT nom, volume, prix FROM boisson"),
@@ -75,6 +76,7 @@ serveur.use(express.static('public'));
 serveur.get('/', function (req,res) {
     res.render('accueil.ejs', {menus: items.menus.rows, 
         pizzas: items.pizzas.rows,
+        taille: items.taillePizzas.rows,
         ingredients: items.ingredients.rows,
         entrees: items.entrees.rows,
         boissons: items.boissons.rows,
