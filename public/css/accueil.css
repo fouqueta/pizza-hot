@@ -17,7 +17,7 @@ html, body {
     top: 0;
     width: 100%;
     height: 50px;
-    border-bottom: solid 3px rgb(242, 213, 110);
+    border-bottom: solid 3px gold;
     z-index: 1;
     background-color: gold;
 }
@@ -45,12 +45,12 @@ html, body {
 }
 
 #connexion {
-  right: 0;
+  right: 25px;
   width: 100px;
 }
 
 #inscription {
-  right: 100px;
+  right: 150px;
   width: 100px;
 }
 
@@ -108,7 +108,7 @@ h2 {
     position: relative;
     margin-top: 80px;
     margin-bottom: 55px;
-    border: solid red 2px;
+    /* border: solid red 2px; */
   /* bottom: 0; */
   /* position: relative; */
 }
@@ -164,14 +164,18 @@ h2 {
   width: 100%;
 }
 
-
-
 .inside_div_produit {
   padding: 0;
   border: solid rgb(237, 225, 182) 2px;
   margin-bottom: 15px;
 }
 
-.img_fluid {
-  width: max-content;
+.inside_div_produit:hover {
+  transition: 200ms;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.select-taille {
+  margin-bottom: 15px;
 }
