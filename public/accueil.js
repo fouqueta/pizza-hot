@@ -1,5 +1,7 @@
  
 $(document).ready(function() {
+    let paniervide = true; //si le panier est vide
+
     var div_menus = $('#div_produits_menus');
     var div_entrees = $('#div_produits_entrees');
     var div_pizzas = $('#div_produits_pizzas');
@@ -39,11 +41,25 @@ $(document).ready(function() {
         replace(div_sauces);
     }
 
-
     function replace(s) {
         $('#div_produits>div').hide();
         s.show();
     }
+
+    document.getElementById('carte_boissons').onclick = function() {
+        replace(div_boissons);
+    }
+
+
+    let classe = document.getElementsByClassName("bouton_item bouton_ajouter");
+
+    $(classe).click(function () {
+        //console.log('oui');
+        let p = document.createElement("p");
+        let identifiant= document.createTextNode(this.id);
+        p.appendChild(identifiant);
+        document.getElementById('panier_vide').appendChild(p);
+    })
 
 
     // function init_produits(s) {

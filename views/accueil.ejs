@@ -73,7 +73,7 @@
                       </select>
                       <% } %>
                       <p class="prix_item"> <%= entrees[i].prix %>€ </p>
-                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                      <button class="bouton_item bouton_ajouter" id=<%= entrees[i].nom %>>Ajouter</button>
                   </div>
                 </div>
                 <% }} %> 
@@ -98,7 +98,7 @@
                     <% if(pizzas[i].nom === "Personnalisable") { %>
                       <button class="bouton_item bouton_pizza_choisir">Choisir</button>
                     <% } else { %>
-                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                      <button class="bouton_item bouton_ajouter" id=<%= pizzas[i].nom %>>Ajouter</button>
                     <% } %>
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
                     <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
                     <p class="prix_item"> <%= boissons[i].prix %>€ </p>
-                    <button class="bouton_item bouton_ajouter">Ajouter</button>
+                    <button class="bouton_item bouton_ajouter" id=<%= boissons[i].nom %>>Ajouter</button>
                   </div>
                 </div>
                 <% } %> 
@@ -125,7 +125,7 @@
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
                       <p class="nom_item"> <%= desserts[i].nom %> </p>
                       <p class="prix_item"> <%= desserts[i].prix %>€ </p>
-                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                      <button class="bouton_item bouton_ajouter" id=<%= desserts[i].nom %>>Ajouter</button>
                   </div>
                 </div>
                 <% } %> 
@@ -138,7 +138,7 @@
                     <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
                       <p class="nom_item"> <%= sauces[i].nom %> </p>
                       <p class="prix_item"> <%= sauces[i].prix %>€ </p>
-                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                      <button class="bouton_item bouton_ajouter" id=<%= sauces[i].nom %>>Ajouter</button>
                   </div>
                 </div>
                 <% } %> 
