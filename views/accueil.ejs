@@ -45,14 +45,14 @@
                 <% for(let i=0; i<menus.length; i++) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p class="nom_item"> <%= menus[i].nom %> </p>
-                      <p> <%= menus[i].nb_entree %> entrée<% if (menus[i].nb_entree!==1) {%>s<%}%> +
-                       <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> +
-                       <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
-                      </p>
-                      <p class="prix_item"> <%= menus[i].prix %>€ </p>
-                      <button class="bouton_item bouton_menu_choisir">Choisir</button>
+                    <img src="images/<%= menus[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= menus[i].nom %> </p>
+                    <p> <%= menus[i].nb_entree %> entrée<% if (menus[i].nb_entree!==1) {%>s<%}%> +
+                     <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> +
+                     <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
+                    </p>
+                    <p class="prix_item"> <%= menus[i].prix %>€ </p>
+                    <button class="bouton_item bouton_menu_choisir">Choisir</button>
                   </div>
                 </div>
                 <% } %> 
@@ -63,17 +63,17 @@
                   if (i%3===0 || entrees[i].sauce===null) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p class="nom_item"> <%= entrees[i].nom %> </p>
-                      <% if(entrees[i].sauce!==null) { %>
-                      <select name="sauce" class="select select-sauce">
-                        <% for(let i=0; i<sauces.length; i++) { %>
-                        <option value=<%=sauces[i].nom%>><%=sauces[i].nom%></option>
-                        <% } %>
-                      </select>
+                    <img src="images/<%= entrees[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= entrees[i].nom %> </p>
+                    <% if(entrees[i].sauce!==null) { %>
+                    <select name="sauce" class="select select-sauce">
+                      <% for(let i=0; i<sauces.length; i++) { %>
+                      <option value=<%=sauces[i].nom%>><%=sauces[i].nom%></option>
                       <% } %>
-                      <p class="prix_item"> <%= entrees[i].prix %>€ </p>
-                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                    </select>
+                    <% } %>
+                    <p class="prix_item"> <%= entrees[i].prix %>€ </p>
+                    <button class="bouton_item bouton_ajouter">Ajouter</button>
                   </div>
                 </div>
                 <% }} %> 
@@ -84,12 +84,12 @@
                   if (i%2===0) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p class="nom_item"> <%= pizzas[i].nom %> </p>
-                      <select name="taille" class="select select-taille">
-                        <% for(let i=0; i<taille.length; i++) { %>
-                          <option value=<%=taille[i].taille%>><%=taille[i].taille%></option>
-                        <% } %>
+                    <img src="images/<%= pizzas[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= pizzas[i].nom %> </p>
+                    <select name="taille" class="select select-taille">
+                      <% for(let i=0; i<taille.length; i++) { %>
+                        <option value=<%=taille[i].taille%>><%=taille[i].taille%></option>
+                      <% } %>
                     </select>
                     <p class="prix_item">
                       <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
@@ -99,6 +99,7 @@
                       <button class="bouton_item bouton_pizza_choisir">Choisir</button>
                     <% } else { %>
                       <button class="bouton_item bouton_ajouter">Ajouter</button>
+                      <button class="bouton_personnaliser">Personnaliser</button>
                     <% } %>
                   </div>
                 </div>
@@ -109,7 +110,7 @@
                 <% for(let i=0; i<boissons.length; i++) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
                     <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
                     <p class="prix_item"> <%= boissons[i].prix %>€ </p>
                     <button class="bouton_item bouton_ajouter">Ajouter</button>
@@ -122,10 +123,10 @@
                 <% for(let i=0; i<desserts.length; i++) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
-                      <p class="nom_item"> <%= desserts[i].nom %> </p>
-                      <p class="prix_item"> <%= desserts[i].prix %>€ </p>
-                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                    <img src="images/<%= desserts[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= desserts[i].nom %> </p>
+                    <p class="prix_item"> <%= desserts[i].prix %>€ </p>
+                    <button class="bouton_item bouton_ajouter">Ajouter</button>
                   </div>
                 </div>
                 <% } %> 
@@ -135,7 +136,7 @@
                 <% for(let i=0; i<sauces.length; i++) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= sauces[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
                       <p class="nom_item"> <%= sauces[i].nom %> </p>
                       <p class="prix_item"> <%= sauces[i].prix %>€ </p>
                       <button class="bouton_item bouton_ajouter">Ajouter</button>
