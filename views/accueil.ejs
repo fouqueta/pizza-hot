@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pizza Hot</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/accueil.css">
+    <script src="accueil.js"></script>
+</head>
+
+<body>
+  <div id=page class="container-fluid">
+      <!------------------------------------ banniere -------------------------------------->
+
+      <!-------------------------- navbar -------------------------->
+          <ul id="banniere" class="row">
+              <li id="logo"><a href="#">Pizza Hot</a></li>
+              <li id="inscription"><a href="#">Inscription</a></li>
+              <li id="connexion"><a href="#">Connexion</a></li>
+          </ul>
+          <!-------------------------- navbar -------------------------->
+          <ul id="navbarProd" class="row col-xs-12 col-sm-12 col-md-8 col-lg-9">
+              <li><button id="carte_menus">Menus</button></li>
+              <li><button id="carte_entrees">Entrees</button></li>
+              <li><button id="carte_pizzas">Pizzas</button></li>
+              <li><button id="carte_boissons">Boissons</button></li>
+              <li><button id="carte_desserts">Desserts</button></li>
+              <li><button id="carte_sauces">Sauces</button></li>
+
+          </ul>
+
+      <!------------------------------ HORS banniere/NAVBAR ------------------------------->
+      <div id="hors_nav">
+          <!-------------------- liste des produits -------------------->
+          <div class="row">
+            <div id="div_produits" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+              
+              <div id="div_produits_menus" class="row">
+                <% for(let i=0; i<menus.length; i++) { %>
+                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                  <div class="inside_div_produit">
+                    <img src="images/<%= menus[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= menus[i].nom %> </p>
+                    <p> <%= menus[i].nb_entree %> entrée<% if (menus[i].nb_entree!==1) {%>s<%}%> +
+                     <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> +
+                     <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
+                    </p>
+                    <p class="prix_item"> <%= menus[i].prix %>€ </p>
+                    <button class="bouton_item bouton_menu_choisir">Choisir</button>
+                  </div>
+                </div>
+                <% } %> 
+              </div>
+
+              <div id="div_produits_entrees"  class="row">
+                <% for(let i=0; i<entrees.length; i++) {
+                  if (i%3===0 || entrees[i].sauce===null) { %>
+                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                  <div class="inside_div_produit">
+                    <img src="images/<%= entrees[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= entrees[i].nom %> </p>
+                    <% if(entrees[i].sauce!==null) { %>
+                    <select name="sauce" class="select select-sauce">
+                      <% for(let i=0; i<sauces.length; i++) { %>
+                      <option value=<%=sauces[i].nom%>><%=sauces[i].nom%></option>
+                      <% } %>
+                    </select>
+                    <% } %>
+                    <p class="prix_item"> <%= entrees[i].prix %>€ </p>
+                    <button class="bouton_item bouton_ajouter">Ajouter</button>
+                  </div>
+                </div>
+                <% }} %> 
+              </div>
+
+              <div id="div_produits_pizzas"  class="row">
+                <% for(let i=0; i<pizzas.length; i++) {
+                  if (i%2===0) { %>
+                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                  <div class="inside_div_produit">
+                    <img src="images/<%= pizzas[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= pizzas[i].nom %> </p>
+                    <select name="taille" class="select select-taille">
+                      <% for(let i=0; i<taille.length; i++) { %>
+                        <option value=<%=taille[i].taille%>><%=taille[i].taille%></option>
+                      <% } %>
+                    </select>
+                    <p class="prix_item">
+                      <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
+                        <%= pizzas[i].prix %>€ 
+                    </p>
+                    <% if(pizzas[i].nom === "Personnalisable") { %>
+                      <button class="bouton_item bouton_pizza_choisir">Choisir</button>
+                    <% } else { %>
+                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                      <button class="bouton_personnaliser">Personnaliser</button>
+                    <% } %>
+                  </div>
+                </div>
+                <% }} %> 
+              </div>
+              
+              <div id="div_produits_boissons"  class="row">
+                <% for(let i=0; i<boissons.length; i++) { %>
+                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                  <div class="inside_div_produit">
+                    <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
+                    <p class="prix_item"> <%= boissons[i].prix %>€ </p>
+                    <button class="bouton_item bouton_ajouter">Ajouter</button>
+                  </div>
+                </div>
+                <% } %> 
+              </div>
+              
+              <div id="div_produits_desserts"  class="row">
+                <% for(let i=0; i<desserts.length; i++) { %>
+                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                  <div class="inside_div_produit">
+                    <img src="images/<%= desserts[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <p class="nom_item"> <%= desserts[i].nom %> </p>
+                    <p class="prix_item"> <%= desserts[i].prix %>€ </p>
+                    <button class="bouton_item bouton_ajouter">Ajouter</button>
+                  </div>
+                </div>
+                <% } %> 
+              </div>
+              
+              <div id="div_produits_sauces"  class="row">
+                <% for(let i=0; i<sauces.length; i++) { %>
+                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                  <div class="inside_div_produit">
+                    <img src="images/<%= sauces[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                      <p class="nom_item"> <%= sauces[i].nom %> </p>
+                      <p class="prix_item"> <%= sauces[i].prix %>€ </p>
+                      <button class="bouton_item bouton_ajouter">Ajouter</button>
+                  </div>
+                </div>
+                <% } %> 
+              </div>
+
+            </div>
+
+            <!-------------------- panier -------------------->
+            <div id="div_panier" class="d-none d-md-block col-md-4 col-lg-3">
+              <h2>Panier</h2>
+              <div id="panier_vide">
+                <p><!--!!!!!!!!! A modifier en js !!!!!!!!!-->
+                  Votre panier est vide. Pas d'idées ? Regardez
+                    <a id="lien_menu" href="accueil.html">nos incroyables menus</a>
+                </p>
+              </div>
+              <div id="div_bouton_commander">
+                <button id="bouton_commander" type="button" name="bouton_commander" disabled>Commander</button>
+              </div>
+            </div>
+            <!-- <div id="div_small_commander" class"d-block d-md-none col-xs-12 col-sm-12"> -->
+              <button id="bouton_small_commander" class="d-block d-md-none col-xs-12 col-sm-12 fixed-bottom" 
+                  type="button" name="bouton_small_commander">Commander</button>
+            <!-- </div> -->
+
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>
