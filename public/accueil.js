@@ -1,3 +1,5 @@
+
+
  
 $(document).ready(function() {
     let paniervide = true; //si le panier est vide
@@ -53,13 +55,50 @@ $(document).ready(function() {
 
     let classe = document.getElementsByClassName("bouton_item bouton_ajouter");
 
+    //faire des croix pour supprimer des articles et quand plus d'articles, remettre le "Votre panier est vide. Pas d'idees?..."
     $(classe).click(function () {
+        if(paniervide){
+            paniervide=false;
+            document.getElementById('panier_vide').innerHTML = '';
+        }
+        //console.log('oui');
+
+        let classe = document.getElementById(this.id);
+        var div = document.createElement("div");
+        div.setAttribute('id', 'article');
+
+        let nom_article = document.createElement("p");
+        let prix_article = document.createElement("p");
+        nom_article.setAttribute('class', 'nom');
+        prix_article.setAttribute('class', 'prix');
+        nom_article.innerHTML = this.id;
+        prix_article.innerHTML = classe.dataset.prix;
+
+        /*nom_article.style.float=left;
+        prix_article.style.float=right;*/
+
+        div.appendChild(nom_article);
+        div.appendChild(prix_article);
+        
+
+        document.getElementById('panier_vide').appendChild(div); 
+       // document.getElementById('panier_vide').appendChild(prix_article); 
+        
+        
+    })
+
+   /* $(classe).click(function () {
+        if(paniervide){
+            paniervide=false;
+            document.getElementById('panier_vide').innerHTML = '';
+        }
         //console.log('oui');
         let p = document.createElement("p");
+        div.setAttribute('class', '');
+        p.innerHTML = "my <b>new</b> skill - <large>DOM maniuplation!</large>";
         let identifiant= document.createTextNode(this.id);
         p.appendChild(identifiant);
-        document.getElementById('panier_vide').appendChild(p);
-    })
+        document.getElementById('panier_vide').appendChild(p); */
 
 
     // function init_produits(s) {
