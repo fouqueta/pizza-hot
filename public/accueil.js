@@ -1,50 +1,58 @@
  
 $(document).ready(function() {
-    var div_menus = $('#div_produits_menus');
-    var div_entrees = $('#div_produits_entrees');
-    var div_pizzas = $('#div_produits_pizzas');
-    var div_boissons = $('#div_produits_boissons');
-    var div_desserts = $('#div_produits_desserts');
-    var div_sauces = $('#div_produits_sauces');
+    var items = {
+        menus: {
+           div: $('#div_produits_menus'),
+           nav: 'carte_menus'
+        },
+        entrees: {
+            div: $('#div_produits_entrees'),
+            nav: 'carte_entrees'
+        }, 
+        pizzas: {
+           div: $('#div_produits_pizzas'),
+           nav: 'carte_pizzas'
+        }, 
+        boissons: {
+            div: $('#div_produits_boissons'),
+            nav: 'carte_boissons'
+        }, 
+        desserts: {
+            div: $('#div_produits_desserts'),
+            nav: 'carte_desserts'
+        },
+        sauces: {
+            div: $('#div_produits_sauces'),
+            nav: 'carte_sauces'
+        } 
+    };
 
-    div_entrees.hide();
-    div_pizzas.hide();
-    div_boissons.hide();
-    div_desserts.hide();
-    div_sauces.hide();
+    items.entrees.div.hide();
+    items.pizzas.div.hide();
+    items.boissons.div.hide();
+    items.desserts.div.hide();
+    items.sauces.div.hide();
+    var but_nav_cur = $('#carte_menus');
+    but_nav_cur.css("background-color", "gold");
 
-    // init_produits(div_menus);
-
-    document.getElementById('carte_menus').onclick = function() {
-        replace(div_menus);
+    for (const t in items) {
+        document.getElementById(items[t].nav).addEventListener('click', function() {
+            $('#div_produits>div').hide();
+            items[t].div.show();
+            but_nav_cur.css("background-color", "lightyellow");
+            but_nav_cur = $("#"+items[t].nav);
+            but_nav_cur.css("background-color", "gold");
+            
+        });
+        document.getElementById(items[t].nav).addEventListener('mouseover', function() {
+            $("#"+items[t].nav).css("background-color", "gold");
+        });
+        document.getElementById(items[t].nav).addEventListener('mouseleave', function() {
+            if (!($("#"+items[t].nav).is(but_nav_cur))) {
+                $("#"+items[t].nav).css("background-color", "lightyellow");
+            }
+        });
     }
-
-    document.getElementById('carte_entrees').onclick = function() {
-        replace(div_entrees);
-    }
-
-    document.getElementById('carte_pizzas').onclick = function() {
-        replace(div_pizzas);
-    }
-
-    document.getElementById('carte_boissons').onclick = function() {
-        replace(div_boissons);
-    }
-
-    document.getElementById('carte_desserts').onclick = function() {
-        replace(div_desserts);
-    }
-
-    document.getElementById('carte_sauces').onclick = function() {
-        replace(div_sauces);
-    }
-
-
-    function replace(s) {
-        $('#div_produits>div').hide();
-        s.show();
-    }
-
 
     // function init_produits(s) {
     //     // let div_i = '<img src="/images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>';

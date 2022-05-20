@@ -83,16 +83,6 @@ html, body {
     border: none;
 }
 
-#navbarProd button:hover {
-    background-color: gold; /* gold ? */
-    text-decoration: none;
-    color: black;
-}
-
-#navbarProd button:focus {
-  background-color: gold;
-}
-
 h2 {
   margin-top: 10%;
   font-size: 25px;
