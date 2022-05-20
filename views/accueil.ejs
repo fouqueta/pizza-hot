@@ -16,11 +16,14 @@
 
 <body>
   <div id=page class="container-fluid">
+
+      <%- include('modals'); %>
+
       <!------------------------------------ banniere -------------------------------------->
 
       <!-------------------------- navbar -------------------------->
           <ul id="banniere" class="row">
-              <li id="logo"><a href="#">Pizza Hot</a></li>
+              <li id="logo"><button> Pizza Hot </button></li>
               <li id="inscription"><a href="#">Inscription</a></li>
               <li id="connexion"><a href="#">Connexion</a></li>
           </ul>
@@ -52,13 +55,13 @@
                      <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
                     </p>
                     <p class="prix_item"> <%= menus[i].prix %>€ </p>
-                    <button class="bouton_item bouton_menu_choisir">Choisir</button>
+                    <button class="bouton_item bouton_menu_choisir" data-toggle="modal" data-target="#modal_menu">Choisir</button>
                   </div>
                 </div>
                 <% } %> 
               </div>
 
-              <div id="div_produits_entrees"  class="row">
+              <div id="div_produits_entrees"  class="row" hidden>
                 <% for(let i=0; i<entrees.length; i++) {
                   if (i%3===0 || entrees[i].sauce===null) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
@@ -79,7 +82,7 @@
                 <% }} %> 
               </div>
 
-              <div id="div_produits_pizzas"  class="row">
+              <div id="div_produits_pizzas"  class="row" hidden>
                 <% for(let i=0; i<pizzas.length; i++) {
                   if (i%2===0) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
@@ -96,17 +99,17 @@
                         <%= pizzas[i].prix %>€ 
                     </p>
                     <% if(pizzas[i].nom === "Personnalisable") { %>
-                      <button class="bouton_item bouton_pizza_choisir">Choisir</button>
+                      <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients">Choisir</button>
                     <% } else { %>
                       <button class="bouton_item bouton_ajouter">Ajouter</button>
-                      <button class="bouton_personnaliser">Personnaliser</button>
+                      <button class="bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients">Personnaliser</button>
                     <% } %>
                   </div>
                 </div>
                 <% }} %> 
               </div>
               
-              <div id="div_produits_boissons"  class="row">
+              <div id="div_produits_boissons"  class="row" hidden>
                 <% for(let i=0; i<boissons.length; i++) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
@@ -119,7 +122,7 @@
                 <% } %> 
               </div>
               
-              <div id="div_produits_desserts"  class="row">
+              <div id="div_produits_desserts"  class="row" hidden>
                 <% for(let i=0; i<desserts.length; i++) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
@@ -132,7 +135,7 @@
                 <% } %> 
               </div>
               
-              <div id="div_produits_sauces"  class="row">
+              <div id="div_produits_sauces"  class="row" hidden>
                 <% for(let i=0; i<sauces.length; i++) { %>
                 <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
@@ -153,7 +156,7 @@
               <div id="panier_vide">
                 <p><!--!!!!!!!!! A modifier en js !!!!!!!!!-->
                   Votre panier est vide. Pas d'idées ? Regardez
-                    <a id="lien_menu" href="accueil.html">nos incroyables menus</a>
+                    <button id="lien_menu">nos incroyables menus</button>
                 </p>
               </div>
               <div id="div_bouton_commander">
@@ -162,7 +165,7 @@
             </div>
             <!-- <div id="div_small_commander" class"d-block d-md-none col-xs-12 col-sm-12"> -->
               <button id="bouton_small_commander" class="d-block d-md-none col-xs-12 col-sm-12 fixed-bottom" 
-                  type="button" name="bouton_small_commander">Commander</button>
+                  type="button" name="bouton_small_commander" data-toggle="modal" data-target="#modal_panier">Commander</button>
             <!-- </div> -->
 
           </div>

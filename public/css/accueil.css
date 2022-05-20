@@ -28,6 +28,14 @@ html, body {
   bottom: 0;
 }
 
+#banniere button {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  text-align: center;
+  display: block;
+}
+
 #banniere a {
   text-align: center;
   color: black;
@@ -40,7 +48,7 @@ html, body {
   left: 30px;
 }
 
-#logo a:hover {
+#logo button:hover {
   color: red;
   text-decoration: none;
 }
@@ -81,16 +89,7 @@ html, body {
     padding: 18px 20px;
     background-color: lightyellow;
     border: none;
-}
-
-#navbarProd button:hover {
-    background-color: gold; /* gold ? */
-    text-decoration: none;
-    color: black;
-}
-
-#navbarProd button:focus {
-  background-color: gold;
+    outline: none;
 }
 
 h2 {
@@ -133,6 +132,9 @@ h2 {
 }
 
 #lien_menu {
+  border: none;
+  outline: none;
+  background-color: inherit;
   text-decoration: underline;
   font-size: 15px;
   color: black;
