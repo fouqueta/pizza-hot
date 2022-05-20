@@ -16,6 +16,9 @@
 
 <body>
   <div id=page class="container-fluid">
+
+      <%- include('modals'); %>
+
       <!------------------------------------ banniere -------------------------------------->
 
       <!-------------------------- navbar -------------------------->
@@ -52,7 +55,7 @@
                      <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
                     </p>
                     <p class="prix_item"> <%= menus[i].prix %>€ </p>
-                    <button class="bouton_item bouton_menu_choisir">Choisir</button>
+                    <button class="bouton_item bouton_menu_choisir" data-toggle="modal" data-target="#modal_menu">Choisir</button>
                   </div>
                 </div>
                 <% } %> 
@@ -96,10 +99,10 @@
                         <%= pizzas[i].prix %>€ 
                     </p>
                     <% if(pizzas[i].nom === "Personnalisable") { %>
-                      <button class="bouton_item bouton_pizza_choisir">Choisir</button>
+                      <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients">Choisir</button>
                     <% } else { %>
                       <button class="bouton_item bouton_ajouter">Ajouter</button>
-                      <button class="bouton_personnaliser">Personnaliser</button>
+                      <button class="bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients">Personnaliser</button>
                     <% } %>
                   </div>
                 </div>
@@ -162,7 +165,7 @@
             </div>
             <!-- <div id="div_small_commander" class"d-block d-md-none col-xs-12 col-sm-12"> -->
               <button id="bouton_small_commander" class="d-block d-md-none col-xs-12 col-sm-12 fixed-bottom" 
-                  type="button" name="bouton_small_commander">Commander</button>
+                  type="button" name="bouton_small_commander" data-toggle="modal" data-target="#modal_panier">Commander</button>
             <!-- </div> -->
 
           </div>

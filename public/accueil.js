@@ -68,33 +68,30 @@ $(document).ready(function() {
         but_nav_cur.css("background-color", "gold");
     }
 
+    // init_actions_nav();
 
-    // function init_actions_nav {
-    //     let modal = '
-    //     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    //     Launch demo modal
-    //     </button>
-
-    //     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    //     <div class="modal-dialog modal-dialog-centered" role="document">
-    //         <div class="modal-content">
-    //         <div class="modal-header">
-    //             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-    //             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    //             <span aria-hidden="true">&times;</span>
-    //             </button>
-    //         </div>
-    //         <div class="modal-body">
-    //             ...
-    //         </div>
-    //         <div class="modal-footer">
-    //             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    //             <button type="button" class="btn btn-primary">Save changes</button>
-    //         </div>
-    //         </div>
-    //     </div>
-    //     </div>';
-
+    // function init_actions_nav() {
+    //     let modal = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">'
+    //     modal+= 'Launch demo modal'
+    //     modal+= '</button>'
+    //     modal+= '<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'
+    //     modal+= '<div class="modal-dialog modal-dialog-centered" role="document">'
+    //     modal+= '<div class="modal-content">'
+    //     modal+= '<div class="modal-header">'
+    //     modal+= '<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>'
+    //     modal+= '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+    //     modal+= '<span aria-hidden="true">&times;</span>'
+    //     modal+= '</button>'
+    //     modal+= '</div>'
+    //     modal+= '<div class="modal-body">'
+    //     modal+= '...'
+    //     modal+= '</div>'
+    //     modal+= '<div class="modal-footer">'
+    //     modal+= '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
+    //     modal+= '<button type="button" class="btn btn-primary">Save changes</button>'
+    //     modal+= '</div></div></div></div>';
+    //     elt = $(modal);
+    //     document.append(elt);
     // }
 
 
