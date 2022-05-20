@@ -27,18 +27,15 @@ $(document).ready(function() {
         } 
     };
 
-    items.entrees.div.hide();
-    items.pizzas.div.hide();
-    items.boissons.div.hide();
-    items.desserts.div.hide();
-    items.sauces.div.hide();
     var but_nav_cur = $('#carte_menus');
     but_nav_cur.css("background-color", "gold");
+    var div_item_cur = $("#div_produits_menus");
 
     for (const t in items) {
         document.getElementById(items[t].nav).addEventListener('click', function() {
-            $('#div_produits>div').hide();
-            items[t].div.show();
+            div_item_cur.attr("hidden", true);
+            div_item_cur = items[t].div;
+            div_item_cur.removeAttr("hidden");
             but_nav_cur.css("background-color", "lightyellow");
             but_nav_cur = $("#"+items[t].nav);
             but_nav_cur.css("background-color", "gold");
@@ -53,6 +50,37 @@ $(document).ready(function() {
             }
         });
     }
+
+
+    // function init_actions_nav {
+    //     let modal = '
+    //     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    //     Launch demo modal
+    //     </button>
+
+    //     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    //     <div class="modal-dialog modal-dialog-centered" role="document">
+    //         <div class="modal-content">
+    //         <div class="modal-header">
+    //             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+    //             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    //             <span aria-hidden="true">&times;</span>
+    //             </button>
+    //         </div>
+    //         <div class="modal-body">
+    //             ...
+    //         </div>
+    //         <div class="modal-footer">
+    //             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    //             <button type="button" class="btn btn-primary">Save changes</button>
+    //         </div>
+    //         </div>
+    //     </div>
+    //     </div>';
+
+    // }
+
+
 
     // function init_produits(s) {
     //     // let div_i = '<img src="/images/coincoin.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>';
