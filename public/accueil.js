@@ -68,6 +68,28 @@ $(document).ready(function() {
         but_nav_cur.css("background-color", "gold");
     }
 
+    let classe_bouton = document.getElementsByClassName("bouton_item bouton_ajouter"); 
+    let paniervide = new Boolean (true);
+
+    //fonction qui affiche les articles dans le panier
+    //TODO: faire des croix pour supprimer des articles et quand plus d'articles, remettre le "Votre panier est vide. Pas d'idees?..."
+    $(classe_bouton).click(function () {
+        if(paniervide){
+            paniervide=false;
+            document.getElementById('panier_vide').innerHTML = '';
+        }
+
+        //nouveau div qui contient le nom de l'article et son prix
+        let article = document.createElement("div");
+        /*article.setAttribute('id', 'nom_article');
+        article.setAttribute('value', 'prix_article');*/
+        article.innerHTML = this.id+" "+this.value+"€";
+
+        document.getElementById('panier_vide').appendChild(article); 
+        
+    })
+
+
     // init_actions_nav();
 
     // function init_actions_nav() {
