@@ -70,6 +70,7 @@ $(document).ready(function() {
 
     let classe_bouton = document.getElementsByClassName("bouton_item bouton_ajouter"); 
     let paniervide = new Boolean (true);
+    let prix_total=0;
 
     //fonction qui affiche les articles dans le panier
     //TODO: faire des croix pour supprimer des articles et quand plus d'articles, remettre le "Votre panier est vide. Pas d'idees?..."
@@ -79,13 +80,25 @@ $(document).ready(function() {
             document.getElementById('panier_vide').innerHTML = '';
         }
 
-        //nouveau div qui contient le nom de l'article et son prix
+        //nouveau div qui contient le nom de l'article
         let article = document.createElement("div");
-        /*article.setAttribute('id', 'nom_article');
-        article.setAttribute('value', 'prix_article');*/
-        article.innerHTML = this.id+" "+this.value+"€";
+        article.innerHTML = this.id + " " + this.value;
+        prix_total+=parseFloat(this.value);
 
+        document.getElementById('prix_total').innerHTML = "&nbsp&nbspTotal: "+Math.round(prix_total* 100.0) / 100.0+"€";
+
+        if (this.hasAttribute("data-choixTaille")){
+            console.log("oui");
+            //nouveau div qui contient des informations supplementaires sur l'article
+            //let info_sup = document.createElement("div");
+            $('idtonselect')
+            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+"taille pizza";
+        }
+        
+        
+       // document.getElementById('article').appendChild(info_sup); 
         document.getElementById('panier_vide').appendChild(article); 
+       
         
     })
 
