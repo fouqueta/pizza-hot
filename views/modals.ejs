@@ -24,7 +24,7 @@
 <!-- Modal pour le choix des items dans un menu -->
 <% for(let i=0; i<menus.length; i++) { %>
 <div class="modal fade" id="modal_menu<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal_menuTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="menuLongTitle">Choisissez vos produits</h5>
@@ -40,13 +40,13 @@
                 <div class="card-header" id="headingE<%=i%><%=j%>">
                   <h6 class="mb-0">
                     <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseE<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseE<%=i%><%=j%>">
-                      Choisissez votre entrée <%=j+1%>
+                      Choisissez votre entrée n°<%=j+1%>
                     </button>
                   </h6>
                 </div>
                 <div id="collapseE<%=i%><%=j%>" class="collapse" aria-labelledby="headingE<%=i%><%=j%>" data-parent="#accordion<%=i%>">
                   <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <% afficheEntreesMenus(); %>
                   </div>
                 </div>
               </div>
@@ -57,13 +57,13 @@
                 <div class="card-header" id="headingP<%=i%><%=j%>">
                   <h6 class="mb-0">
                     <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseP<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseP<%=i%><%=j%>">
-                      Choisissez votre pizza <%=j+1%>
+                      Choisissez votre pizza n°<%=j+1%>
                     </button>
                   </h6>
                 </div>
                 <div id="collapseP<%=i%><%=j%>" class="collapse" aria-labelledby="headingP<%=i%><%=j%>" data-parent="#accordion<%=i%>">
                   <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <% affichePizzasMenus(); %>
                   </div>
                 </div>
               </div>
@@ -74,13 +74,13 @@
                 <div class="card-header" id="headingB<%=i%><%=j%>">
                   <h6 class="mb-0">
                     <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseB<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseB<%=i%><%=j%>">
-                      Choisissez votre boisson <%=j+1%>
+                      Choisissez votre boisson n°<%=j+1%>
                     </button>
                   </h6>
                 </div>
                 <div id="collapseB<%=i%><%=j%>" class="collapse" aria-labelledby="headingB<%=i%><%=j%>" data-parent="#accordion<%=i%>">
                   <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <% afficheBoissonsMenus(i); %>
                   </div>
                 </div>
               </div>
@@ -139,3 +139,68 @@
     </div>
 </div>
 <% }} %>
+
+
+<!-- Fonctions pour le choix dans les menus -->
+<% function afficheEntreesMenus() { %>
+  <div id="choixMenusEntrees"  class="row">
+    <% for(let i=0; i<entrees.length; i++) {
+      if (i%3===0 || entrees[i].sauce===null) { %>
+    <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+      <div class="inside_div_produit">
+        <img src="images/<%= entrees[i].nom %>.jpg" alt="<%= entrees[i].nom %>" class="img-fluid"/>
+        <p class="nom_item"> <%= entrees[i].nom %> </p>
+        <% if(entrees[i].sauce!==null) { %>
+        <select name="sauce" class="select select-sauce">
+          <% for(let j=0; j<sauces.length; j++) { %>
+          <option value=<%=sauces[j].nom%>><%=sauces[j].nom%></option>
+          <% } %>
+        </select>
+        <% } %>
+        <button class="bouton_item bouton_ajouter">Ajouter</button>
+      </div>
+    </div>
+    <% }} %> 
+  </div>
+<% } %>
+
+<% function affichePizzasMenus() { %>
+  <div id="choixMenusPizzas"  class="row">
+    <% for(let i=2; i<pizzas.length; i++) {
+      if (i%2===0) { %>
+    <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+      <div class="inside_div_produit">
+        <img src="images/<%= pizzas[i].nom %>.jpg" alt="<%= pizzas[i].nom %>" class="img-fluid"/>
+        <p class="nom_item"> <%= pizzas[i].nom %> </p>
+        <p class="taillePizza"> <%= pizzas[i].taille %> </p>
+        <button class="bouton_item bouton_ajouter">Ajouter</button>
+        <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients<%=i%>">Personnaliser</button>
+      </div>
+    </div>
+    <% }} %> 
+  </div>
+<% } %>
+
+<% function afficheBoissonsMenus(j) { %>
+  <div id="choixMenusBoissons"  class="row">
+    <% for(let i=0; i<boissons.length; i++) { 
+      if (menus[j].nom==="Extra Menu" && (boissons[i].volume==="20cl" || boissons[i].volume==="33cl" || boissons[i].volume==="50cl")) { %>
+    <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+      <div class="inside_div_produit">
+        <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>
+        <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
+        <button class="bouton_item bouton_ajouter">Ajouter</button>
+      </div>
+    </div>
+    <% } else if (menus[j].nom!=="Mega Menu" && (boissons[i].volume==="1,25L" || boissons[i].volume==="1,5L" || boissons[i].volume==="2L")) { %>
+      <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+        <div class="inside_div_produit">
+          <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>
+          <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
+          <button class="bouton_item bouton_ajouter">Ajouter</button>
+        </div>
+      </div>
+    <% }} %> 
+  </div>
+<% } %>
+

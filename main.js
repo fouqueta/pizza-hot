@@ -15,7 +15,7 @@ async function init_items() {
     const client = await pool.connect();
     let items = {
         menus: await client.query ("SELECT * FROM menu"),
-        pizzas: await client.query ("SELECT nom, prix FROM pizza"),
+        pizzas: await client.query ("SELECT nom, prix, taille FROM pizza"),
         taillePizzas: await client.query("SELECT DISTINCT taille FROM pizza"),
         ingredients: await client.query ("SELECT * FROM ingredient"),
         pizzaIngredients: await client.query("SELECT * FROM pizza_ingredients"),

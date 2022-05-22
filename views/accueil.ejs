@@ -52,9 +52,12 @@
                     <img src="images/<%= menus[i].nom %>.jpg" alt="<%= menus[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= menus[i].nom %> </p>
                     <p> <%= menus[i].nb_entree %> entrée<% if (menus[i].nb_entree!==1) {%>s<%}%> +
-                     <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> +
-                     <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
+                      <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> Medium +
+                      <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
+                      <br><% if (menus[i].nom==="Extra Menu") {%> (50cl ou moins) <%}
+                          else {%> (1L ou plus) <%}%></br>
                     </p>
+                    
                     <p class="prix_item"> <%= menus[i].prix %>€ </p>
                     <button class="bouton_item bouton_menu_choisir" data-toggle="modal" data-target="#modal_menu<%=i%>">Choisir</button>
                   </div>
