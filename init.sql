@@ -235,7 +235,8 @@ INSERT INTO ingredient VALUES
   ('Tomates', 1.50, 'commun'),
   ('Olives noires', 1.50, 'commun'),
   ('Ananas', 1.50, 'commun'),
-  ('Caviar', 40.00, 'luxe');
+  ('Caviar', 50.00, 'luxe'),
+  ('Truffe', 30.00, 'luxe'),
 
 INSERT INTO menu VALUES
   ('Extra Menu', 17.90, 1, 1, 2),

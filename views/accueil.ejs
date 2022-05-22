@@ -11,6 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/accueil.css">
+    <link rel="stylesheet" href="css/modals.css">
     <script src="accueil.js"></script>
 </head>
 
@@ -44,11 +45,11 @@
           <div class="row">
             <div id="div_produits" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
               
-              <div id="div_produits_menus" class="row">
+              <div id="div_produits_menus" class="row" hidden>
                 <% for(let i=0; i<menus.length; i++) { %>
-                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/<%= menus[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= menus[i].nom %>.jpg" alt="<%= menus[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= menus[i].nom %> </p>
                     <p> <%= menus[i].nb_entree %> entrée<% if (menus[i].nb_entree!==1) {%>s<%}%> +
                      <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> +
@@ -64,9 +65,9 @@
               <div id="div_produits_entrees"  class="row" hidden>
                 <% for(let i=0; i<entrees.length; i++) {
                   if (i%3===0 || entrees[i].sauce===null) { %>
-                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/<%= entrees[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= entrees[i].nom %>.jpg" alt="<%= entrees[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= entrees[i].nom %> </p>
                     <% if(entrees[i].sauce!==null) { %>
                     <select name="sauce" class="select select-sauce">
@@ -82,12 +83,12 @@
                 <% }} %> 
               </div>
 
-              <div id="div_produits_pizzas"  class="row" hidden>
+              <div id="div_produits_pizzas"  class="row">
                 <% for(let i=0; i<pizzas.length; i++) {
                   if (i%2===0) { %>
-                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/<%= pizzas[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= pizzas[i].nom %>.jpg" alt="<%= pizzas[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= pizzas[i].nom %> </p>
                     <select name="taille" class="select select-taille">
                       <% for(let i=0; i<taille.length; i++) { %>
@@ -102,7 +103,7 @@
                       <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients">Choisir</button>
                     <% } else { %>
                       <button class="bouton_item bouton_ajouter">Ajouter</button>
-                      <button class="bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients">Personnaliser</button>
+                      <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients">Personnaliser</button>
                     <% } %>
                   </div>
                 </div>
@@ -111,9 +112,9 @@
               
               <div id="div_produits_boissons"  class="row" hidden>
                 <% for(let i=0; i<boissons.length; i++) { %>
-                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
                     <p class="prix_item"> <%= boissons[i].prix %>€ </p>
                     <button class="bouton_item bouton_ajouter">Ajouter</button>
@@ -124,9 +125,9 @@
               
               <div id="div_produits_desserts"  class="row" hidden>
                 <% for(let i=0; i<desserts.length; i++) { %>
-                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/<%= desserts[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= desserts[i].nom %>.jpg" alt="<%= desserts[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= desserts[i].nom %> </p>
                     <p class="prix_item"> <%= desserts[i].prix %>€ </p>
                     <button class="bouton_item bouton_ajouter">Ajouter</button>
@@ -137,9 +138,9 @@
               
               <div id="div_produits_sauces"  class="row" hidden>
                 <% for(let i=0; i<sauces.length; i++) { %>
-                <div id="azertyus" class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
+                <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
-                    <img src="images/<%= sauces[i].nom %>.jpg" alt="coincoin" class="img-fluid" alt="Responsive image"/>
+                    <img src="images/<%= sauces[i].nom %>.jpg" alt="<%= sauces[i].nom %>" class="img-fluid"/>
                       <p class="nom_item"> <%= sauces[i].nom %> </p>
                       <p class="prix_item"> <%= sauces[i].prix %>€ </p>
                       <button class="bouton_item bouton_ajouter">Ajouter</button>
