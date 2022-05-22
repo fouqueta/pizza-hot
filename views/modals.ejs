@@ -20,8 +20,10 @@
 </div>
 
 
+
 <!-- Modal pour le choix des items dans un menu -->
-<div class="modal fade" id="modal_menu" tabindex="-1" role="dialog" aria-labelledby="modal_menuTitle" aria-hidden="true">
+<% for(let i=0; i<menus.length; i++) { %>
+<div class="modal fade" id="modal_menu<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal_menuTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -31,14 +33,68 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          
+          <div id="accordion<%=i%>">
+            <% for(let j=0; j<menus[i].nb_entree; j++) { %>
+              <div class="card">
+                <div class="card-header" id="headingE<%=i%><%=j%>">
+                  <h6 class="mb-0">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseE<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseE<%=i%><%=j%>">
+                      Choisissez votre entrée <%=j+1%>
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseE<%=i%><%=j%>" class="collapse" aria-labelledby="headingE<%=i%><%=j%>" data-parent="#accordion<%=i%>">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            <% } %>
+
+            <% for(let j=0; j<menus[i].nb_pizza; j++) { %>
+              <div class="card">
+                <div class="card-header" id="headingP<%=i%><%=j%>">
+                  <h6 class="mb-0">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseP<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseP<%=i%><%=j%>">
+                      Choisissez votre pizza <%=j+1%>
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseP<%=i%><%=j%>" class="collapse" aria-labelledby="headingP<%=i%><%=j%>" data-parent="#accordion<%=i%>">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            <% } %>
+
+            <% for(let j=0; j<menus[i].nb_boisson; j++) { %>
+              <div class="card">
+                <div class="card-header" id="headingB<%=i%><%=j%>">
+                  <h6 class="mb-0">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseB<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseB<%=i%><%=j%>">
+                      Choisissez votre boisson <%=j+1%>
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseB<%=i%><%=j%>" class="collapse" aria-labelledby="headingB<%=i%><%=j%>" data-parent="#accordion<%=i%>">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="bouton_ajouter btn btn-succes"> Valider </button>
+          <button type="button" class="bouton_ajouter btn btn-success"> Valider </button>
         </div>
       </div>
     </div>
 </div>
+<% } %>
 
 
 <!-- Modal pour le choix des ingredients -->
