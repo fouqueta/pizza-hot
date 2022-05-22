@@ -42,7 +42,9 @@
 
 
 <!-- Modal pour le choix des ingredients -->
-<div class="modal fade" id="modal_ingredients" tabindex="-1" role="dialog" aria-labelledby="modal_ingredientsTitle" aria-hidden="true">
+<% for(let i=0; i<pizzas.length; i++) {
+  if (i%2===0) { %>
+<div class="modal fade" id="modal_ingredients<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal_ingredientsTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -52,20 +54,25 @@
           </button>
         </div>
         <div class="modal-body">
+          <!-- Rubrique pour les ingredients choisis -->
           <div class="div_ingredients_selected">
             <p class="titre_rubrique_ingredient">Vos ingrédients (Max. 6)</p>
-            
+            <% for(let j=0; j<pizzaIngredients.length; j++) {
+              if (i+1===pizzaIngredients[j].id_pizza) { %>
+                <% for(let k=0; k<pizzaIngredients[j].quantite; k++) { %>
+                  <p class="ingredient_choisi"><%= pizzaIngredients[j].id_ingredient %></p>
+            <% }}} %>
           </div>
           
+          <!-- Rubrique pour les ingredients a choisir -->
           <div class="div_ingredients_choose">
             <p class="titre_rubrique_ingredient">Ajouter quelque chose en plus</p>
             <% for(let i=0; i<ingredients.length; i++) { %>
               <button type="button" class="bouton_ingredients btn btn-outline-light" id="<%= ingredients[i].nom %>">
                 <%= ingredients[i].nom %>
               </button>
-              <span class="prix_ingredients"><%= ingredients[i].prix %>€</span>
-              <span class="prix_ingredient_gratuit" hidden> Gratuit </span>
-              
+              <span class="prix_ingredients" hidden><%= ingredients[i].prix %>€</span>
+              <span class="prix_ingredient_gratuit"> Gratuit </span>
             <% } %>
           </div>
         </div>
@@ -75,3 +82,4 @@
       </div>
     </div>
 </div>
+<% }} %>

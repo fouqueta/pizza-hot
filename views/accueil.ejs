@@ -71,8 +71,8 @@
                     <p class="nom_item"> <%= entrees[i].nom %> </p>
                     <% if(entrees[i].sauce!==null) { %>
                     <select name="sauce" class="select select-sauce">
-                      <% for(let i=0; i<sauces.length; i++) { %>
-                      <option value=<%=sauces[i].nom%>><%=sauces[i].nom%></option>
+                      <% for(let j=0; j<sauces.length; j++) { %>
+                      <option value=<%=sauces[j].nom%>><%=sauces[j].nom%></option>
                       <% } %>
                     </select>
                     <% } %>
@@ -91,19 +91,19 @@
                     <img src="images/<%= pizzas[i].nom %>.jpg" alt="<%= pizzas[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= pizzas[i].nom %> </p>
                     <select name="taille" class="select select-taille">
-                      <% for(let i=0; i<taille.length; i++) { %>
-                        <option value=<%=taille[i].taille%>><%=taille[i].taille%></option>
+                      <% for(let j=0; j<taille.length; j++) { %>
+                        <option value=<%=taille[j].taille%>><%=taille[j].taille%></option>
                       <% } %>
                     </select>
                     <p class="prix_item">
                       <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
                         <%= pizzas[i].prix %>€ 
                     </p>
-                    <% if(pizzas[i].nom === "Personnalisable") { %>
-                      <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients">Choisir</button>
+                    <% if(pizzas[i].nom === "Personnalisable") { %>  <!-- TODO ligne du bas: a changer en"#modal_ingredients<%=pizzas[i].nom%>"  ? -->
+                      <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients<%=i%>">Choisir</button>
                     <% } else { %>
                       <button class="bouton_item bouton_ajouter">Ajouter</button>
-                      <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients">Personnaliser</button>
+                      <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients<%=i%>">Personnaliser</button>
                     <% } %>
                   </div>
                 </div>

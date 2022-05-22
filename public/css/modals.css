@@ -16,6 +16,7 @@
 
 .btn-outline-light {
     color: black;
+    border: solid rgb(227, 227, 227) 1px;
 }
 
 .prix_ingredients {
