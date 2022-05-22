@@ -100,11 +100,11 @@
 <!-- Modal pour le choix des ingredients -->
 <% for(let i=0; i<pizzas.length; i++) {
   if (i%2===0) { %>
-<div class="modal fade" id="modal_ingredients<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal_ingredientsTitle" aria-hidden="true">
+<div class="modal fade" id="modal_ingredients<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal_ingredients<%=i%>Title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ingredientsModalLongTitle">Choisissez vos ingrédients</h5>
+          <h5 class="modal-title" id="ingredients<%=i%>ModalLongTitle">Choisissez vos ingrédients</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -116,7 +116,12 @@
             <% for(let j=0; j<pizzaIngredients.length; j++) {
               if (i+1===pizzaIngredients[j].id_pizza) { %>
                 <% for(let k=0; k<pizzaIngredients[j].quantite; k++) { %>
-                  <p class="ingredient_choisi"><%= pizzaIngredients[j].id_ingredient %></p>
+                  <div class="div_ingredient_choisi">
+                    <span class="ingredient_choisi"><%= pizzaIngredients[j].id_ingredient %></span>
+                    <button class="close" aria-label="Close" onclick="this.parentNode.remove();">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
             <% }}} %>
           </div>
           
@@ -192,7 +197,7 @@
         <button class="bouton_item bouton_ajouter">Ajouter</button>
       </div>
     </div>
-    <% } else if (menus[j].nom!=="Mega Menu" && (boissons[i].volume==="1,25L" || boissons[i].volume==="1,5L" || boissons[i].volume==="2L")) { %>
+    <% } else if (menus[j].nom!=="Extra Menu" && (boissons[i].volume==="1,25L" || boissons[i].volume==="1,5L" || boissons[i].volume==="2L")) { %>
       <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
         <div class="inside_div_produit">
           <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>

@@ -34,3 +34,10 @@
     background-color: gold;
     outline: none;
 }
+
+.div_ingredient_choisi {
+    padding: 8px;
+    border-radius: 5px;
+    border: solid 1px rgb(227, 227, 227);
+    margin-bottom: 10px;
+}
