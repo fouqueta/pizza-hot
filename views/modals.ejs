@@ -39,7 +39,8 @@
               <div class="card">
                 <div class="card-header" id="headingE<%=i%><%=j%>">
                   <h6 class="mb-0">
-                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseE<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseE<%=i%><%=j%>">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseE<%=i%><%=j%>" 
+                      aria-expanded="false" aria-controls="collapseE<%=i%><%=j%>">
                       Choisissez votre entrée n°<%=j+1%>
                     </button>
                   </h6>
@@ -56,7 +57,8 @@
               <div class="card">
                 <div class="card-header" id="headingP<%=i%><%=j%>">
                   <h6 class="mb-0">
-                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseP<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseP<%=i%><%=j%>">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseP<%=i%><%=j%>" 
+                      aria-expanded="false" aria-controls="collapseP<%=i%><%=j%>">
                       Choisissez votre pizza n°<%=j+1%>
                     </button>
                   </h6>
@@ -73,7 +75,8 @@
               <div class="card">
                 <div class="card-header" id="headingB<%=i%><%=j%>">
                   <h6 class="mb-0">
-                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseB<%=i%><%=j%>" aria-expanded="false" aria-controls="collapseB<%=i%><%=j%>">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseB<%=i%><%=j%>" 
+                      aria-expanded="false" aria-controls="collapseB<%=i%><%=j%>">
                       Choisissez votre boisson n°<%=j+1%>
                     </button>
                   </h6>
@@ -100,7 +103,8 @@
 <!-- Modal pour le choix des ingredients -->
 <% for(let i=0; i<pizzas.length; i++) {
   if (i%2===0) { %>
-<div class="modal fade modal_ingredients" id="modal_ingredients<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal_ingredients<%=i%>Title" aria-hidden="true">
+<div class="modal fade modal_ingredients" id="modal_ingredients<%=i%>" tabindex="-1" role="dialog" 
+  aria-labelledby="modal_ingredients<%=i%>Title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -179,7 +183,9 @@
         <p class="nom_item"> <%= pizzas[i].nom %> </p>
         <p class="taillePizza"> <%= pizzas[i].taille %> </p>
         <button class="bouton_item bouton_ajouter">Ajouter</button>
-        <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients<%=i%>">Personnaliser</button>
+        <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients<%=i%>">
+          Personnaliser
+        </button>
       </div>
     </div>
     <% }} %> 
@@ -189,7 +195,8 @@
 <% function afficheBoissonsMenus(j) { %>
   <div id="choixMenusBoissons"  class="row">
     <% for(let i=0; i<boissons.length; i++) { 
-      if (menus[j].nom==="Extra Menu" && (boissons[i].volume==="20cl" || boissons[i].volume==="33cl" || boissons[i].volume==="50cl")) { %>
+      if (menus[j].nom==="Extra Menu" && 
+      (boissons[i].volume==="20cl" || boissons[i].volume==="33cl" || boissons[i].volume==="50cl")) { %>
     <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
       <div class="inside_div_produit">
         <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>
@@ -197,7 +204,8 @@
         <button class="bouton_item bouton_ajouter">Ajouter</button>
       </div>
     </div>
-    <% } else if (menus[j].nom!=="Extra Menu" && (boissons[i].volume==="1,25L" || boissons[i].volume==="1,5L" || boissons[i].volume==="2L")) { %>
+    <% } else if (menus[j].nom!=="Extra Menu" && 
+    (boissons[i].volume==="1,25L" || boissons[i].volume==="1,5L" || boissons[i].volume==="2L")) { %>
       <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
         <div class="inside_div_produit">
           <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>
