@@ -39,7 +39,6 @@ $(document).ready(function() {
             but_nav_cur.css("background-color", "lightyellow");
             but_nav_cur = $("#"+items[t].nav);
             but_nav_cur.css("background-color", "gold");
-            
         });
         document.getElementById(items[t].nav).addEventListener('mouseover', function() {
             $("#"+items[t].nav).css("background-color", "gold");
