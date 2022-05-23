@@ -82,21 +82,14 @@ $(document).ready(function() {
 
         //nouveau div qui contient le nom de l'article
         let article = document.createElement("div");
-        article.innerHTML = this.id + " " + this.value;
+        article.innerHTML = "<br />"+this.id + " " + this.value+"€";
         prix_total+=parseFloat(this.value);
-
         document.getElementById('prix_total').innerHTML = "&nbsp&nbspTotal: "+Math.round(prix_total* 100.0) / 100.0+"€";
 
-        if (this.hasAttribute("data-choixTaille")){
-            console.log("oui");
-            //nouveau div qui contient des informations supplementaires sur l'article
-            //let info_sup = document.createElement("div");
-            $('idtonselect')
-            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+"taille pizza";
+        if (this.hasAttribute("data-choixTaille") || $(this).prev().prev().is("select")){ //si c'est une pizza (donc des tailles à choisir) ou une entrée ayant une sauce à choisir
+            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().children("option:selected").text();
         }
-        
-        
-       // document.getElementById('article').appendChild(info_sup); 
+
         document.getElementById('panier_vide').appendChild(article); 
        
         

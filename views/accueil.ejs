@@ -90,6 +90,8 @@
                   <div class="inside_div_produit">
                     <img src="images/<%= pizzas[i].nom %>.jpg" alt="<%= pizzas[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= pizzas[i].nom %> </p>
+
+
                     <select name="taille" class="select select-taille">
                       <% for(let i=0; i<taille.length; i++) { %>
                         <option value=<%=taille[i].taille%>><%=taille[i].taille%></option>
@@ -102,7 +104,7 @@
                     <% if(pizzas[i].nom === "Personnalisable") { %>
                       <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients">Choisir</button>
                     <% } else { %>
-                      <button class="bouton_item bouton_ajouter" id="<%=pizzas[i].nom %>" data-choixTaille="<%=taille[i%2].taille%>" value=<%= pizzas[i].prix %> >Ajouter</button>
+                      <button class="bouton_item bouton_ajouter" id="<%=pizzas[i].nom %>" value=<%= pizzas[i].prix %> >Ajouter</button> 
                       <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients">Personnaliser</button>
                     <% } %>
                   </div>
