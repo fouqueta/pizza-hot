@@ -105,6 +105,10 @@
                       <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
                         <%= pizzas[i].prix %>€ 
                     </p>
+                    <p class="prix_item" hidden>
+                      <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
+                        <%= pizzas[i+1].prix %>€ 
+                    </p>
                     <% if(pizzas[i].nom === "Personnalisable") { %>  <!-- TODO ligne du bas: a changer en"#modal_ingredients<%=pizzas[i].nom%>"  ? -->
                       <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients<%=i%>">
                         Choisir
