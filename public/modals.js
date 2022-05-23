@@ -35,15 +35,19 @@ $(document).ready(function() {
         div_ingr.find(".div_ingredients_selected").children().each(function () {
             $(this).remove();
         });
-        for (const ingr of ingredients_preSelect) {
-            div_ingr.find(".div_ingredients_selected").append(ingredients_preSelect);
-        }
+        div_ingr.find(".div_ingredients_selected").append(ingredients_preSelect);
+        $(this).find(".bouton_ingredients").removeAttr("disabled");
     });
 
     function refreshPrixIngredients(elt) {
         // alert("badoum");
         //alert(elt.find(".div_ingredient_choisi").length);
-        if (elt.find(".div_ingredient_choisi").length >= 3) {
+        let nb_ingr = elt.find(".div_ingredient_choisi").length;
+        if (nb_ingr >= 6) {
+            elt.find(".bouton_ingredients").attr("disabled", true);
+            return;
+        }
+        else if (nb_ingr >= 3) {
             elt.find(".prix_ingredient_gratuit").attr("hidden", true);
             elt.find(".prix_ingredient").removeAttr("hidden");
             //alert("badoum");            
@@ -54,6 +58,7 @@ $(document).ready(function() {
             elt.find(".prix_ingredient_gratuit").removeAttr("hidden");
             // alert("bibidou");
         }
+        elt.find(".bouton_ingredients").removeAttr("disabled");
     }
 
 });
