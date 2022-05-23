@@ -2,7 +2,6 @@
 $(document).ready(function() {
     var ingredients_preSelect = [];
 
-
     $('.bouton_ingredients').on('click', function() {
         elt = "<div class='div_ingredient_choisi'>";
         elt += '<span class="ingredient_choisi">'
@@ -14,12 +13,21 @@ $(document).ready(function() {
         elt += '</div';
         res = $(elt);
         $(this).parent().prev().append(res);
+        refreshPrixIngredients($(this).parent().parent());
+    });
+
+
+    $('.bouton_ingredient_close').on("click", function() {
+        var par = $(this).parent().parent().parent();
+        $(this).parent().remove();
+        refreshPrixIngredients(par);
     });
 
 
     $('.modal_ingredients').on("shown.bs.modal", function() {
         ingredients_preSelect = $(this).find(".div_ingredients_selected").children();
-    })
+        refreshPrixIngredients($(this));
+    });
 
     // des qu'on quitte un modal de choix d'ingredients, on refresh pour ne garder que ceux qui etaient pre-selectionnes
     $('.modal_ingredients').on("hidden.bs.modal", function() {
@@ -31,5 +39,21 @@ $(document).ready(function() {
             div_ingr.find(".div_ingredients_selected").append(ingredients_preSelect);
         }
     });
+
+    function refreshPrixIngredients(elt) {
+        // alert("badoum");
+        //alert(elt.find(".div_ingredient_choisi").length);
+        if (elt.find(".div_ingredient_choisi").length >= 3) {
+            elt.find(".prix_ingredient_gratuit").attr("hidden", true);
+            elt.find(".prix_ingredient").removeAttr("hidden");
+            //alert("badoum");            
+        }
+        else {
+            //alert("test");
+            elt.find(".prix_ingredient").attr("hidden", true);
+            elt.find(".prix_ingredient_gratuit").removeAttr("hidden");
+            // alert("bibidou");
+        }
+    }
 
 });

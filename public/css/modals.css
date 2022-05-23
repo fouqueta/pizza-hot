@@ -41,3 +41,8 @@
     border: solid 1px rgb(227, 227, 227);
     margin-bottom: 10px;
 }
+
+.prix_perso {
+    margin: auto;
+    padding-right: 20px;
+}

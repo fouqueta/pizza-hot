@@ -67,7 +67,8 @@ $(document).ready(function() {
         but_nav_cur.css("background-color", "gold");
     }
 
-// Màj des prix quand on change de taille
+    
+    // Màj des prix quand on change de taille
     $(".select-taille").change(function() {
        if ($(this).find(":selected").text()==="Medium") {
             $(this).next().next().attr("hidden", true);

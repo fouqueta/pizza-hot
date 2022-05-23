@@ -122,7 +122,7 @@
                 <% for(let k=0; k<pizzaIngredients[j].quantite; k++) { %>
                   <div class="div_ingredient_choisi">
                     <span class="ingredient_choisi"><%= pizzaIngredients[j].id_ingredient %></span>
-                    <button class="close" aria-label="Close" onclick="this.parentNode.remove();">
+                    <button class="close bouton_ingredient_close" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -136,12 +136,14 @@
               <button type="button" class="bouton_ingredients btn btn-outline-light" id="<%= ingredients[i].nom %>">
                 <%= ingredients[i].nom %>
               </button>
-              <span class="prix_ingredients" hidden><%= ingredients[i].prix %>€</span>
-              <span class="prix_ingredient_gratuit"> Gratuit </span>
+              <span class="prix_ingredient"><%= ingredients[i].prix %>€</span>
+              <span class="prix_ingredient_gratuit" hidden> Gratuit </span>
             <% } %>
           </div>
         </div>
         <div class="modal-footer">
+          <p class="prix_perso prix_personnalisable_m"> <%= pizzas[i].prix %>€ </p>
+          <p class="prix_perso prix_personnalisable_xl" > <%= pizzas[i+1].prix %>€ </p>
           <button type="button" class="bouton_ajouter btn btn-success"> Valider </button>
         </div>
       </div>
