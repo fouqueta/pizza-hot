@@ -73,9 +73,54 @@ $(document).ready(function() {
     let prix_total=0;
     let index_div_article=0;
 
-    //fonction qui affiche les articles dans le panier
-    //TODO: faire des croix pour supprimer des articles et quand plus d'articles, remettre le "Votre panier est vide. Pas d'idees?..."
+
+    function setArticle(elt_this,article,nom_classe){
+        //nouveau div qui contient le nom de l'article
+        article.setAttribute("class",nom_classe);
+        article.setAttribute("id",index_div_article);
+        article.innerHTML = "<br />"+elt_this.id + " " +elt_this.value+"€";
+        prix_total+=parseFloat(elt_this.value);
+        document.getElementById('prix_total').innerHTML = "&nbsp&nbspTotal: "+Math.round(prix_total* 100.0) / 100.0+"€";
+  
+    }
+
+    function createDeleteButton(article,btn_delete,nom_classe){
+        btn_delete.setAttribute('class',nom_classe);
+        btn_delete.innerHTML = 'x';
+        article.append(btn_delete);
+        document.getElementById('panier_vide').appendChild(article); 
+        $(".btn_delete_class").on("click", function() { //TODO: changer valeur du prix total
+            $(this).parent().remove();
+        });
+    }
+
+
+    //click qui affiche les articles dans le panier
     $(classe_bouton).click(function () {
+        if(paniervide){
+            paniervide=false;
+            document.getElementById('panier_vide').innerHTML = '';
+        }
+
+        let article = document.createElement("div");
+        setArticle(this,article,"article_class");
+
+        if ($(this).prev().prev().is("select")){ //si c'est une pizza (donc des tailles à choisir) ou une entrée ayant une sauce à choisir
+            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().children("option:selected").text();
+        }else if(this.hasAttribute("data-choixTaille")){
+            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().prev().children("option:selected").text();
+        }
+        btn_delete = document.createElement("button");
+        createDeleteButton(article,btn_delete,'btn_delete_class');
+        index_div_article++;
+
+    });
+
+
+    let menu_bouton = document.getElementsByClassName("bouton_item bouton_menu_choisir"); 
+    //click qui affiche les menus dans le panier
+    $(menu_bouton).click(function () {
+        console.log("oui");
         if(paniervide){
             paniervide=false;
             document.getElementById('panier_vide').innerHTML = '';
@@ -83,37 +128,24 @@ $(document).ready(function() {
 
         //nouveau div qui contient le nom de l'article
         let article = document.createElement("div");
-        article.setAttribute("class","article_class");
-        article.setAttribute("id",index_div_article);
-        article.innerHTML = "<br />"+this.id + " " + this.value+"€";
-        prix_total+=parseFloat(this.value);
-        document.getElementById('prix_total').innerHTML = "&nbsp&nbspTotal: "+Math.round(prix_total* 100.0) / 100.0+"€";
-
-         
-        //bouton qui supprime un article dans le panier
-        btn_delete = document.createElement("button");
-        btn_delete.setAttribute('class','btn_delete_class');
-        btn_delete.innerHTML = 'x';
-        article.append(btn_delete);
-
-        if ($(this).prev().prev().is("select")){ //si c'est une pizza (donc des tailles à choisir) ou une entrée ayant une sauce à choisir
-            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().children("option:selected").text();
-        }else if(this.hasAttribute("data-choixTaille")){
-            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().prev().children("option:selected").text();
-        }
-        document.getElementById('panier_vide').appendChild(article);
-        
-       $(".btn_delete_class").on("click", function() {
-            console.log("oui");
-            $(this).parent().remove();
-            let k = prix_total -=$(this).parent().val();
-            console.log($(this).parent().val());
-        });
-        
+        // setArticleAndDelete(this,article,"menu_class");
+        setArticle(this,article,"article_class");
         index_div_article++;
+        document.getElementById('panier_vide').appendChild(article);
 
-    })
-    
+        btn_delete = document.createElement("button");
+        createDeleteButton(article,btn_delete,'btn_delete_class');
+
+        //nouveau div qui contient les entrees/pizzas/desserts/boissons choisis dans le menu
+        let menu_bouton = document.getElementsByClassName("bouton_item bouton_ajouter_modals"); 
+        $(menu_bouton).click(function () {
+            let sous_article = document.createElement("div");
+            sous_article.setAttribute("class","menu_class_article");
+            article.innerHTML += "</br>&nbsp&nbsp&nbsp&nbsp"+this.id;
+            article.append(sous_article);
+        });
+
+    });
     
     
     // Màj des prix quand on change de taille
