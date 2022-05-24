@@ -4,23 +4,17 @@ $(document).ready(function() {
 
     $('.bouton_ingredients').on('click', function() {
         elt = "<div class='div_ingredient_choisi'>";
-        elt += '<span class="ingredient_choisi">'
+        elt += '<span class="ingredient_choisi">';
         elt += this.id;
         elt += '</span>';
-        elt += '<button class="close" aria-label="Close" onclick="this.parentNode.remove();">';
+        elt += '<button class="close bouton_ingredient_close" aria-label="Close">';
         elt += '<span aria-hidden="true">&times;</span>';
         elt += '</button>';
-        elt += '</div';
+        elt += '</div>';
         res = $(elt);
         $(this).parent().prev().append(res);
+        addEventCloseIngre();
         refreshPrixIngredients($(this).parent().parent());
-    });
-
-
-    $('.bouton_ingredient_close').on("click", function() {
-        var par = $(this).parent().parent().parent();
-        $(this).parent().remove();
-        refreshPrixIngredients(par);
     });
 
 
@@ -42,6 +36,7 @@ $(document).ready(function() {
     function refreshPrixIngredients(elt) {
         // alert("badoum");
         //alert(elt.find(".div_ingredient_choisi").length);
+        console.log(elt.find(".div_ingredient_choisi"));
         let nb_ingr = elt.find(".div_ingredient_choisi").length;
         if (nb_ingr >= 6) {
             elt.find(".bouton_ingredients").attr("disabled", true);
@@ -59,6 +54,14 @@ $(document).ready(function() {
             // alert("bibidou");
         }
         elt.find(".bouton_ingredients").removeAttr("disabled");
+    }
+
+    function addEventCloseIngre() {
+        $('.bouton_ingredient_close').on("click", function() {
+            var par = $(this).parent().parent().parent();
+            $(this).parent().remove();
+            refreshPrixIngredients(par);
+        });
     }
 
 });
