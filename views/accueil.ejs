@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/accueil.css">
     <link rel="stylesheet" href="css/modals.css">
     <script src="accueil.js"></script>
+    <script src="modals.js"></script>
 </head>
 
 <body>
@@ -52,11 +53,16 @@
                     <img src="images/<%= menus[i].nom %>.jpg" alt="<%= menus[i].nom %>" class="img-fluid"/>
                     <p class="nom_item"> <%= menus[i].nom %> </p>
                     <p> <%= menus[i].nb_entree %> entrée<% if (menus[i].nb_entree!==1) {%>s<%}%> +
-                     <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> +
-                     <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
+                      <%= menus[i].nb_pizza %> pizza<% if (menus[i].nb_pizza!==1) {%>s<%}%> Medium +
+                      <%= menus[i].nb_boisson %> boisson<% if (menus[i].nb_boisson!==1) {%>s<%}%>
+                      <br><% if (menus[i].nom==="Extra Menu") {%> (50cl ou moins) <%}
+                          else {%> (1L ou plus) <%}%></br>
                     </p>
+                    
                     <p class="prix_item"> <%= menus[i].prix %>€ </p>
-                    <button class="bouton_item bouton_menu_choisir" data-toggle="modal" data-target="#modal_menu">Choisir</button>
+                    <button class="bouton_item bouton_menu_choisir" data-toggle="modal" data-target="#modal_menu<%=i%>">
+                      Choisir
+                    </button>
                   </div>
                 </div>
                 <% } %> 
@@ -71,8 +77,8 @@
                     <p class="nom_item"> <%= entrees[i].nom %> </p>
                     <% if(entrees[i].sauce!==null) { %>
                     <select name="sauce" class="select select-sauce">
-                      <% for(let i=0; i<sauces.length; i++) { %>
-                      <option value=<%=sauces[i].nom%>><%=sauces[i].nom%></option>
+                      <% for(let j=0; j<sauces.length; j++) { %>
+                      <option value=<%=sauces[j].nom%>><%=sauces[j].nom%></option>
                       <% } %>
                     </select>
                     <% } %>
@@ -93,19 +99,27 @@
 
 
                     <select name="taille" class="select select-taille">
-                      <% for(let i=0; i<taille.length; i++) { %>
-                        <option value=<%=taille[i].taille%>><%=taille[i].taille%></option>
+                      <% for(let j=0; j<taille.length; j++) { %>
+                        <option value=<%=taille[j].taille%>><%=taille[j].taille%></option>
                       <% } %>
                     </select>
                     <p class="prix_item">
                       <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
                         <%= pizzas[i].prix %>€ 
                     </p>
-                    <% if(pizzas[i].nom === "Personnalisable") { %>
-                      <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients">Choisir</button>
+                    <p class="prix_item" hidden>
+                      <% if(pizzas[i].nom === "Personnalisable") { %>A partir de <% } %>
+                        <%= pizzas[i+1].prix %>€ 
+                    </p>
+                    <% if(pizzas[i].nom === "Personnalisable") { %>  <!-- TODO ligne du bas: a changer en"#modal_ingredients<%=pizzas[i].nom%>"  ? -->
+                      <button class="bouton_item bouton_pizza_choisir" data-toggle="modal" data-target="#modal_ingredients<%=i%>">
+                        Choisir
+                      </button>
                     <% } else { %>
-                      <button class="bouton_item bouton_ajouter" id="<%=pizzas[i].nom %>" value=<%= pizzas[i].prix %> >Ajouter</button> 
-                      <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients">Personnaliser</button>
+                      <button class="bouton_item bouton_ajouter" id="<%=pizzas[i].nom %>" data-choixTaille="<%=taille[i%2].taille%>" value=<%= pizzas[i].prix %> >Ajouter</button> 
+                      <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients<%=i%>">
+                        Personnaliser
+                      </button>
                     <% } %>
                   </div>
                 </div>
@@ -157,9 +171,9 @@
             <div id="div_panier" class="d-none d-md-block col-md-4 col-lg-3">
               <h2>Panier</h2>
               <div id="panier_vide">
-                <p><!--!!!!!!!!! A modifier en js !!!!!!!!!-->
+                <p>  
                   Votre panier est vide. Pas d'idées ? Regardez
-                    <button id="lien_menu">nos incroyables menus</button>
+                  <button id="lien_menu">nos incroyables menus</button>
                 </p>
               </div>
               
@@ -170,7 +184,9 @@
             </div>
             <!-- <div id="div_small_commander" class"d-block d-md-none col-xs-12 col-sm-12"> -->
               <button id="bouton_small_commander" class="d-block d-md-none col-xs-12 col-sm-12 fixed-bottom" 
-                  type="button" name="bouton_small_commander" data-toggle="modal" data-target="#modal_panier">Commander</button>
+                  type="button" name="bouton_small_commander" data-toggle="modal" data-target="#modal_panier">
+                  Commander
+              </button>
             <!-- </div> -->
 
           </div>

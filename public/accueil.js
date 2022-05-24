@@ -39,7 +39,6 @@ $(document).ready(function() {
             but_nav_cur.css("background-color", "lightyellow");
             but_nav_cur = $("#"+items[t].nav);
             but_nav_cur.css("background-color", "gold");
-            
         });
         document.getElementById(items[t].nav).addEventListener('mouseover', function() {
             $("#"+items[t].nav).css("background-color", "gold");
@@ -67,6 +66,7 @@ $(document).ready(function() {
         but_nav_cur = $("#"+items.menus.nav);
         but_nav_cur.css("background-color", "gold");
     }
+
 
     let classe_bouton = document.getElementsByClassName("bouton_item bouton_ajouter"); 
     let paniervide = new Boolean (true);
@@ -98,6 +98,8 @@ $(document).ready(function() {
 
         if ($(this).prev().prev().is("select")){ //si c'est une pizza (donc des tailles à choisir) ou une entrée ayant une sauce à choisir
             article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().children("option:selected").text();
+        }else if(this.hasAttribute("data-choixTaille")){
+            article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().prev().children("option:selected").text();
         }
         document.getElementById('panier_vide').appendChild(article);
         
@@ -113,6 +115,18 @@ $(document).ready(function() {
     })
     
     
+    
+    // Màj des prix quand on change de taille
+    $(".select-taille").change(function() {
+       if ($(this).find(":selected").text()==="Medium") {
+            $(this).next().next().attr("hidden", true);
+            $(this).next().removeAttr("hidden");
+       }
+       else {
+            $(this).next().attr("hidden", true);
+            $(this).next().next().removeAttr("hidden");
+       }
+    });
 
     // init_actions_nav();
 

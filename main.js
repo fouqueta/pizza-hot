@@ -10,14 +10,14 @@ const pool = new pg.Pool({
     port: 5432,
 });
 
-
 async function init_items() {
     const client = await pool.connect();
     let items = {
         menus: await client.query ("SELECT * FROM menu"),
-        pizzas: await client.query ("SELECT nom, prix FROM pizza"),
+        pizzas: await client.query ("SELECT nom, prix, taille FROM pizza"),
         taillePizzas: await client.query("SELECT DISTINCT taille FROM pizza"),
         ingredients: await client.query ("SELECT * FROM ingredient"),
+        pizzaIngredients: await client.query("SELECT * FROM pizza_ingredients"),
         entrees: await client.query ("SELECT nom, prix, sauce FROM entree"),
         boissons: await client.query ("SELECT nom, volume, prix FROM boisson"),
         desserts: await client.query ("SELECT nom, prix FROM dessert"),
@@ -78,6 +78,7 @@ serveur.get('/', function (req,res) {
         pizzas: items.pizzas.rows,
         taille: items.taillePizzas.rows,
         ingredients: items.ingredients.rows,
+        pizzaIngredients: items.pizzaIngredients.rows,
         entrees: items.entrees.rows,
         boissons: items.boissons.rows,
         desserts: items.desserts.rows,
