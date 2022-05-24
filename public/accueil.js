@@ -27,9 +27,9 @@ $(document).ready(function() {
         } 
     };
 
-    var but_nav_cur = $('#carte_pizzas');
+    var but_nav_cur = $('#carte_menus');
     but_nav_cur.css("background-color", "gold");
-    var div_item_cur = items.pizzas.div;
+    var div_item_cur = items.menus.div;
 
     for (const t in items) {
         document.getElementById(items[t].nav).addEventListener('click', function() {

@@ -123,7 +123,14 @@ CREATE TABLE commande_produits (
   primary key (id_commande, id_produit)
 );
 
--- EXTENSION POUR UN COMPTE LIVREUR
+CREATE TABLE livreur (
+  id_livreur serial primary key,
+  nom varchar(50),
+  prenom varchar(50) not null,
+  email varchar(50) not null,
+  mdp varchar(30) not null
+);
+
 -- CREATE TABLE livreur_commandes (
 --   id_livreur integer not null,
 --   id_commande integer not null,
@@ -132,13 +139,6 @@ CREATE TABLE commande_produits (
 --   primary key (id_livreur, id_commande)
 -- );
 
--- CREATE TABLE livreur (
---   id_livreur serial primary key,
---   nom varchar(20),
---   prenom varchar(20) not null,
---   email varchar(50) not null,
---   mdp varchar(100) not null,
--- );
 
 
 INSERT INTO produit (type_prod) VALUES
@@ -236,7 +236,7 @@ INSERT INTO ingredient VALUES
   ('Olives noires', 1.50, 'commun'),
   ('Ananas', 1.50, 'commun'),
   ('Caviar', 50.00, 'luxe'),
-  ('Truffe', 30.00, 'luxe'),
+  ('Truffe', 30.00, 'luxe');
 
 INSERT INTO menu VALUES
   ('Extra Menu', 17.90, 1, 1, 2),
@@ -435,3 +435,8 @@ INSERT INTO commande_produits VALUES
   (1, 63, 1),
   (1, 67, 2),
   (2, 72, 1);
+
+INSERT INTO livreur (prenom, nom, email, mdp) VALUES
+  ('Jean', 'Bono', 'jeanBono@gmail.com', 'j_aime_les_pizzas'),
+  ('Alain', 'Térieur', 'alainTerieur@gmail.com', 'j_aime_les_burgers'),
+  ('Alex', 'Térieur', 'alexTerieur@gmail.com', 'j_aime_la_choucroute');

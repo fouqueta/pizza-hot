@@ -6,7 +6,7 @@
 
     <title>Pizza Hot</title>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
           <div class="row">
             <div id="div_produits" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
               
-              <div id="div_produits_menus" class="row" hidden>
+              <div id="div_produits_menus" class="row">
                 <% for(let i=0; i<menus.length; i++) { %>
                 <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
                   <div class="inside_div_produit">
@@ -89,7 +89,7 @@
                 <% }} %> 
               </div>
 
-              <div id="div_produits_pizzas"  class="row">
+              <div id="div_produits_pizzas"  class="row" hidden>
                 <% for(let i=0; i<pizzas.length; i++) {
                   if (i%2===0) { %>
                 <div class="div_produit col-12 col-sm-6 col-md-6 col-lg-4 text-center">
