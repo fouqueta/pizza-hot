@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pizza Hot</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/livraison.css">
+</head>
+
+<body>
+
+    <div id=page class="container-fluid">
+        <div id="authentification">
+            <form id="formL">
+                <div class="form-group">
+                    <label for="email">Adresse email</label>
+                    <input required  type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Entrez vote email">
+                </div>
+                <div class="form-group">
+                    <label for="mdp">Mot de passe</label>
+                    <input required type="password" class="form-control" name="mdp" id="mdp" placeholder="Entrez votre mot de passe">
+                </div>
+                <button id="btn_validerL" type="submit" class="btn btn-primary">Se connecter</button>
+            </form>
+        </div>
+
+        <div id="page_commande" class="row">
+            <div class="commande">
+                <div class="informations_client">
+                    <p></p>
+                    <p></p>
+
+                </div>
+               
+                <div class="informations_produits">
+
+                </div>
+               
+                <div class="boutons_livreur">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script  type = "text/javascript">
+        $("#btn_validerL").on("click", 
+            function validerFormLivreur(e) {
+                e.preventDefault();
+                alert("test1");
+                $.post('http://localhost:8080/livraison/test', 
+                {email: document.getElementById("email").value,
+                 mdp: document.getElementById("mdp").value}, 
+                function(data) {
+                    alert("tets2");
+                    if(data) {
+                        alert("test3");
+                        $("#authentification").hide();
+                    }
+                    else {
+                        alert("test4");
+                        let elt = '<p id="messError">Erreur, veuillez recommencer</p>'
+                        let res = $(elt);
+                        $("#authentification").append(res);
+                    }
+                })
+                alert("test5");
+        });
+    </script>
+
+</body>
+</html>

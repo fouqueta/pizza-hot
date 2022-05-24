@@ -6,9 +6,10 @@ const pool = new pg.Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'pizzahot',
-    password: 'mdp',
+    password: 'BD6',
     port: 5432,
 });
+
 
 async function init_items() {
     const client = await pool.connect();
@@ -27,51 +28,52 @@ async function init_items() {
     return items;
 }
 
-// init_items(menus);
+async function init_livreurs() {
+    const client = await pool.connect();
+    let livreurs = await client.query ("SELECT nom, prenom, email, mdp FROM livreur");
+    client.release();
+    return livreurs;
+}
 
-// async function init_menus(tab) {
+// async function init_commandes() {
 //     const client = await pool.connect();
-//     let nb = await client.query ("SELECT count(nom) FROM menu");
-//     for (let i = 0; i < nb; i++) {
-//         tab[i] = {
-//             nom: await client.query ("SELECT nom FROM menu")
-
-//         }
-//     }
-//     let menus = await client.query ("SELECT * FROM menu");
+//     let commandes = await client.query ("SELECT id_client, date_cmd, prise_en_charge, livree FROM commandes");
 //     client.release();
+//     return commandes;
 // }
 
 
+async function verifLivreurs(email, mdp) {
+    const client = await pool.connect();
+    let livreur = await client.query("SELECT * from livreur WHERE email = $1 AND mdp = $2;", [email, mdp]);
+    client.release();
+    if (livreur) { return true; }
+    else { return false; }
+}
 
-// async function init_items(items) {
-//     const client = await pool.connect();
-//     let menus = await client.query ("SELECT * FROM menu");
-//     let pizzas = await client.query ("SELECT nom, taille, prix FROM pizza");
-//     let ingredients = await client.query ("SELECT * FROM ingredient");
-//     let entrees = await client.query ("SELECT nom, prix, sauce FROM entree");
-//     let boissons = await client.query ("SELECT nom, volume, prix FROM boisson");
-//     let desserts = await client.query ("SELECT nom, prix FROM dessert");
-//     let sauces = await client.query ("SELECT nom, prix FROM sauce");
-//     client.release();
-//     return [menus, pizzas, ingredients, entrees, boissons, desserts, sauces];
-// }
+
 
 var items = {};
+var livreurs = {};
+var commandes = {};
 
 init_items()
     .then(resultat => { items = resultat })
-    .catch(err => console.err (err.stack));
+    .catch(err => console.error(err.stack));
+    
+init_livreurs()
+    .then(resultat => { livreurs = resultat })
+    .catch(err => console.error(err.stack));
+    
+// init_commandes()
+//     .then(resultat => { commandes = resultat })
+//     .catch(err => console.error(err.stack));
 
 
 serveur.set('view engine', 'ejs');
 serveur.use(express.urlencoded({extended: true}));
 serveur.use(express.static('public'));
 
-
-// serveur.get('/', function (req,res) {
-//     res.render('accueil.ejs', {items});
-// });
 
 serveur.get('/', function (req,res) {
     res.render('accueil.ejs', {menus: items.menus.rows, 
@@ -85,8 +87,19 @@ serveur.get('/', function (req,res) {
         sauces: items.sauces.rows});
 });
 
-// serv.get('/livraison',function (req,res) {
-// });
+
+serveur.get('/livraison', function (req,res) {
+    res.render('livraison.ejs', {livreurs: livreurs.rows});
+});
+
+
+serveur.post('/livraison/test', function (req,res) {
+    console.log("test");
+    alert("test !!");
+    verifLivreurs(req.body.email, req.body.mdp)
+        .then(resultat => { return resultat })
+        .catch(err => console.error(err.stack));
+});
 
 
 serveur.listen(8080,
