@@ -71,6 +71,7 @@ $(document).ready(function() {
     let classe_bouton = document.getElementsByClassName("bouton_item bouton_ajouter"); 
     let paniervide = new Boolean (true);
     let prix_total=0;
+    let index_div_article=0;
 
     //fonction qui affiche les articles dans le panier
     //TODO: faire des croix pour supprimer des articles et quand plus d'articles, remettre le "Votre panier est vide. Pas d'idees?..."
@@ -82,19 +83,36 @@ $(document).ready(function() {
 
         //nouveau div qui contient le nom de l'article
         let article = document.createElement("div");
+        article.setAttribute("class","article_class");
+        article.setAttribute("id",index_div_article);
         article.innerHTML = "<br />"+this.id + " " + this.value+"€";
         prix_total+=parseFloat(this.value);
         document.getElementById('prix_total').innerHTML = "&nbsp&nbspTotal: "+Math.round(prix_total* 100.0) / 100.0+"€";
 
-        if (this.hasAttribute("data-choixTaille") || $(this).prev().prev().is("select")){ //si c'est une pizza (donc des tailles à choisir) ou une entrée ayant une sauce à choisir
+         
+        //bouton qui supprime un article dans le panier
+        btn_delete = document.createElement("button");
+        btn_delete.setAttribute('class','btn_delete_class');
+        btn_delete.innerHTML = 'x';
+        article.append(btn_delete);
+
+        if ($(this).prev().prev().is("select")){ //si c'est une pizza (donc des tailles à choisir) ou une entrée ayant une sauce à choisir
             article.innerHTML += "</br>"+"&nbsp&nbsp&nbsp&nbsp"+$(this).prev().prev().children("option:selected").text();
         }
-
-        document.getElementById('panier_vide').appendChild(article); 
-       
+        document.getElementById('panier_vide').appendChild(article);
         
-    })
+       $(".btn_delete_class").on("click", function() {
+            console.log("oui");
+            $(this).parent().remove();
+            let k = prix_total -=$(this).parent().val();
+            console.log($(this).parent().val());
+        });
+        
+        index_div_article++;
 
+    })
+    
+    
 
     // init_actions_nav();
 
