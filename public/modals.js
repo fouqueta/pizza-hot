@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
     var ingredients_preSelect = [];
+    var prixTotalM;
+    var prixTotalXL;
 
     $('.bouton_ingredients').on('click', function() {
         elt = "<div class='div_ingredient_choisi'>";
@@ -14,12 +16,15 @@ $(document).ready(function() {
         res = $(elt);
         $(this).parent().prev().append(res);
         addEventCloseIngre();
+        addPrixTotal($(this));
         refreshPrixIngredients($(this).parent().parent());
     });
 
 
     $('.modal_ingredients').on("shown.bs.modal", function() {
         ingredients_preSelect = $(this).find(".div_ingredients_selected").children();
+        prixTotalM = $(this).find(".prix_personnalisable_m").text();
+        prixTotalXL = $(this).find(".prix_personnalisable_xl").text();
         refreshPrixIngredients($(this));
     });
 
@@ -31,6 +36,7 @@ $(document).ready(function() {
         });
         div_ingr.find(".div_ingredients_selected").append(ingredients_preSelect);
         $(this).find(".bouton_ingredients").removeAttr("disabled");
+        refreshPrixTotal($(this));
     });
 
     function refreshPrixIngredients(elt) {
@@ -56,9 +62,41 @@ $(document).ready(function() {
         elt.find(".bouton_ingredients").removeAttr("disabled");
     }
 
+    function addPrixTotal(elt)  {
+        var prix = elt.next();
+        if (prix.is(":visible")) {
+            var prixM = parseFloat(prix.parent().parent().next().find(".prix_personnalisable_m").text());
+            var prixXL = parseFloat(prix.parent().parent().next().find(".prix_personnalisable_xl").text());
+            prixM += parseFloat(prix.text());
+            prixXL += parseFloat(prix.text());
+            prix.parent().parent().next().find(".prix_personnalisable_m").html(prixM + "€");
+            prix.parent().parent().next().find(".prix_personnalisable_xl").html(prixXL + "€");
+        }
+    }
+
+    function subPrixTotal(elt) {
+        var prix = elt.parent().parent().next().find(".prix_ingredient");
+        if (prix.is(":visible")) {
+            var prixM = parseFloat(prix.parent().parent().next().find(".prix_personnalisable_m").text());
+            var prixXL = parseFloat(prix.parent().parent().next().find(".prix_personnalisable_xl").text());
+            console.log(prixM);
+            prixM -= parseFloat(prix.text());
+            prixXL -= parseFloat(prix.text());
+            if (prixM < prixTotalM && prixXL < prixTotalXL) { return; }
+            prix.parent().parent().next().find(".prix_personnalisable_m").html(prixM + "€");
+            prix.parent().parent().next().find(".prix_personnalisable_xl").html(prixXL + "€");
+        }
+    }
+
+    function refreshPrixTotal(elt) {
+        elt.find(".prix_personnalisable_m").html(prixTotalM);
+        elt.find(".prix_personnalisable_xl").html(prixTotalXL);
+    }
+
     function addEventCloseIngre() {
         $('.bouton_ingredient_close').on("click", function() {
             var par = $(this).parent().parent().parent();
+            subPrixTotal($(this));
             $(this).parent().remove();
             refreshPrixIngredients(par);
         });
