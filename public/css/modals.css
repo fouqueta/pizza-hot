@@ -1,0 +1,54 @@
+
+.div_ingredients_selected {
+    border-bottom: solid 2px rgb(225, 225, 225);
+    margin-bottom: 15px;
+}
+
+.titre_rubrique_ingredient {
+    background-color: gold;
+    padding: 12px;
+}
+
+.bouton_ingredients {
+    width: 75%;
+    margin: 5px;
+}
+
+.bouton_ingredients:disabled {
+    border: solid 1px rgb(227, 227, 227);
+    background-color: lightgray;
+    color: rgb(63, 63, 6); 
+}
+
+.btn-outline-light {
+    color: black;
+    border: solid rgb(227, 227, 227) 1px;
+}
+
+.prix_ingredients {
+    position: relative;
+    right: 0;
+}
+
+.card-header {
+    background-color: gold;
+}
+
+.card-header .bouton_menu {
+    padding: 5px;
+    border: none;
+    background-color: gold;
+    outline: none;
+}
+
+.div_ingredient_choisi {
+    padding: 8px;
+    border-radius: 5px;
+    border: solid 1px rgb(227, 227, 227);
+    margin-bottom: 10px;
+}
+
+.prix_perso {
+    margin: auto;
+    padding-right: 20px;
+}

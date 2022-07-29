@@ -1,0 +1,221 @@
+
+<!-- Modal pour le panier quand l'ecran est petit -->
+<div class="modal fade" id="modal_panier" tabindex="-1" role="dialog" aria-labelledby="modal_panierTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="panierLongTitle">Panier</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="bouton_ajouter btn btn-success"> Commander </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<!-- Modal pour le choix des items dans un menu -->
+<% for(let i=0; i<menus.length; i++) { %>
+<div class="modal fade" id="modal_menu<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal_menuTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="menuLongTitle">Choisissez vos produits</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <div id="accordion<%=i%>">
+            <% for(let j=0; j<menus[i].nb_entree; j++) { %>
+              <div class="card">
+                <div class="card-header" id="headingE<%=i%><%=j%>">
+                  <h6 class="mb-0">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseE<%=i%><%=j%>" 
+                      aria-expanded="false" aria-controls="collapseE<%=i%><%=j%>">
+                      Choisissez votre entrée n°<%=j+1%>
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseE<%=i%><%=j%>" class="collapse" aria-labelledby="headingE<%=i%><%=j%>" data-parent="#accordion<%=i%>">
+                  <div class="card-body">
+                    <% afficheEntreesMenus(); %>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+
+            <% for(let j=0; j<menus[i].nb_pizza; j++) { %>
+              <div class="card">
+                <div class="card-header" id="headingP<%=i%><%=j%>">
+                  <h6 class="mb-0">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseP<%=i%><%=j%>" 
+                      aria-expanded="false" aria-controls="collapseP<%=i%><%=j%>">
+                      Choisissez votre pizza n°<%=j+1%>
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseP<%=i%><%=j%>" class="collapse" aria-labelledby="headingP<%=i%><%=j%>" data-parent="#accordion<%=i%>">
+                  <div class="card-body">
+                    <% affichePizzasMenus(); %>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+
+            <% for(let j=0; j<menus[i].nb_boisson; j++) { %>
+              <div class="card">
+                <div class="card-header" id="headingB<%=i%><%=j%>">
+                  <h6 class="mb-0">
+                    <button class="bouton_menu collapsed" data-toggle="collapse" data-target="#collapseB<%=i%><%=j%>" 
+                      aria-expanded="false" aria-controls="collapseB<%=i%><%=j%>">
+                      Choisissez votre boisson n°<%=j+1%>
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseB<%=i%><%=j%>" class="collapse" aria-labelledby="headingB<%=i%><%=j%>" data-parent="#accordion<%=i%>">
+                  <div class="card-body">
+                    <% afficheBoissonsMenus(i); %>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="bouton_ajouter btn btn-success"> Valider </button>
+        </div>
+      </div>
+    </div>
+</div>
+<% } %>
+
+
+<!-- Modal pour le choix des ingredients -->
+<% for(let i=0; i<pizzas.length; i++) {
+  if (i%2===0) { %>
+<div class="modal fade modal_ingredients" id="modal_ingredients<%=i%>" tabindex="-1" role="dialog" 
+  aria-labelledby="modal_ingredients<%=i%>Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ingredients<%=i%>ModalLongTitle">Choisissez vos ingrédients</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Rubrique pour les ingredients choisis -->
+          <div class="div_ingredients_selected">
+            <p class="titre_rubrique_ingredient">Vos ingrédients (Max. 6)</p>
+            <% for(let j=0; j<pizzaIngredients.length; j++) {
+              if (i+1===pizzaIngredients[j].id_pizza) { %>
+                <% for(let k=0; k<pizzaIngredients[j].quantite; k++) { %>
+                  <div class="div_ingredient_choisi">
+                    <span class="ingredient_choisi"><%= pizzaIngredients[j].id_ingredient %></span>
+                    <button class="close bouton_ingredient_close" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+            <% }}} %>
+          </div>
+          
+          <!-- Rubrique pour les ingredients a choisir -->
+          <div class="div_ingredients_choose">
+            <p class="titre_rubrique_ingredient">Ajouter quelque chose en plus</p>
+            <% for(let i=0; i<ingredients.length; i++) { %>
+              <button type="button" class="bouton_ingredients btn btn-outline-light" id="<%= ingredients[i].nom %>">
+                <%= ingredients[i].nom %>
+              </button>
+              <span class="prix_ingredient"><%= ingredients[i].prix %>€</span>
+              <span class="prix_ingredient_gratuit" hidden> Gratuit </span>
+            <% } %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="prix_perso prix_personnalisable_m"> <%= pizzas[i].prix %>€ </p>
+          <p class="prix_perso prix_personnalisable_xl"> <%= pizzas[i+1].prix %>€ </p>
+          <button type="button" class="bouton_ajouter btn btn-success"> Valider </button>
+        </div>
+      </div>
+    </div>
+</div>
+<% }} %>
+
+
+<!-- Fonctions pour le choix dans les menus -->
+<% function afficheEntreesMenus() { %>
+  <div id="choixMenusEntrees"  class="row">
+    <% for(let i=0; i<entrees.length; i++) {
+      if (i%3===0 || entrees[i].sauce===null) { %>
+    <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+      <div class="inside_div_produit">
+        <img src="images/<%= entrees[i].nom %>.jpg" alt="<%= entrees[i].nom %>" class="img-fluid"/>
+        <p class="nom_item"> <%= entrees[i].nom %> </p>
+        <% if(entrees[i].sauce!==null) { %>
+        <select name="sauce" class="select select-sauce">
+          <% for(let j=0; j<sauces.length; j++) { %>
+          <option value=<%=sauces[j].nom%>><%=sauces[j].nom%></option>
+          <% } %>
+        </select>
+        <% } %>
+        <button class="bouton_item bouton_ajouter" id="<%= entrees[i].nom %> ">Ajouter</button>
+      </div>
+    </div>
+    <% }} %> 
+  </div>
+<% } %>
+
+<% function affichePizzasMenus() { %>
+  <div id="choixMenusPizzas"  class="row">
+    <% for(let i=2; i<pizzas.length; i++) {
+      if (i%2===0) { %>
+    <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+      <div class="inside_div_produit">
+        <img src="images/<%= pizzas[i].nom %>.jpg" alt="<%= pizzas[i].nom %>" class="img-fluid"/>
+        <p class="nom_item"> <%= pizzas[i].nom %> </p>
+        <p class="taillePizza"> <%= pizzas[i].taille %> </p>
+        <button class="bouton_item bouton_ajouter" id="<%= pizzas[i].nom %>">Ajouter</button>
+        <button class="bouton_item bouton_personnaliser" data-toggle="modal" data-target="#modal_ingredients<%=i%>">
+          Personnaliser
+        </button>
+      </div>
+    </div>
+    <% }} %> 
+  </div>
+<% } %>
+
+<% function afficheBoissonsMenus(j) { %>
+  <div id="choixMenusBoissons"  class="row">
+    <% for(let i=0; i<boissons.length; i++) { 
+      if (menus[j].nom==="Extra Menu" && 
+      (boissons[i].volume==="20cl" || boissons[i].volume==="33cl" || boissons[i].volume==="50cl")) { %>
+    <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+      <div class="inside_div_produit">
+        <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>
+        <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
+        <button class="bouton_item bouton_ajouter" id="<%= boissons[i].nom %>" >Ajouter</button>
+      </div>
+    </div>
+    <% } else if (menus[j].nom!=="Extra Menu" && 
+    (boissons[i].volume==="1,25L" || boissons[i].volume==="1,5L" || boissons[i].volume==="2L")) { %>
+      <div class="div_produit col-6 col-sm-6 col-md-6 col-lg-4 text-center">
+        <div class="inside_div_produit">
+          <img src="images/<%= boissons[i].nom %> <%= boissons[i].volume %>.jpg" alt="<%= boissons[i].nom %>" class="img-fluid"/>
+          <p class="nom_item"> <%= boissons[i].nom %> <%= boissons[i].volume %> </p>
+          <button class="bouton_item bouton_ajouter" id="<%= boissons[i].nom %>">Ajouter</button>
+        </div>
+      </div>
+    <% }} %> 
+  </div>
+<% } %>
+
